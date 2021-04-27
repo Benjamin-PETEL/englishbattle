@@ -38,15 +38,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	
 	@Override
 	public Question create(Question question) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(Requetes.AJOUT_QUESTION, Statement.RETURN_GENERATED_KEYS);
-		Date dateEnvoie = new java.sql.Date(question.getDateEnvoi().getTime());
-		Date dateReponse = new java.sql.Date(question.getDateReponse().getTime());
-		ps.setLong(1, question.getPartie().getId());
-		ps.setLong(2, question.getVerbe().getId());
-		ps.setString(3, question.getReponsePreterit());
-		ps.setString(4, question.getReponseParticipePasse());
-		ps.setDate(5, dateEnvoie);
-		ps.setDate(6, dateReponse);
+		PreparedStatement ps = initialiseStatement(Requetes.AJOUT_QUESTION, question);
 		ps.executeUpdate();
 		ResultSet rs = ps.getGeneratedKeys();
 		if (rs.next()) {
@@ -103,8 +95,28 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	@Override
 	public Question modify(Long id, Question nouvelleQuestion) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement ps = initialiseStatement(Requetes.UPDATE_QUESTION, nouvelleQuestion);
+		ps.setLong(7, id);
+		ps.executeUpdate();
+		ResultSet rs = ps.getGeneratedKeys();
+		if (rs.next()) {
+			nouvelleQuestion.setId(rs.getLong(1));
+		}
+		return nouvelleQuestion;
 	}
+	
+	private PreparedStatement initialiseStatement(String requete, Question question) throws SQLException {
+		PreparedStatement ps = connection.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+		Date dateEnvoie = new java.sql.Date(question.getDateEnvoi().getTime());
+		Date dateReponse = new java.sql.Date(question.getDateReponse().getTime());
+		ps.setLong(1, question.getPartie().getId());
+		ps.setLong(2, question.getVerbe().getId());
+		ps.setString(3, question.getReponsePreterit());
+		ps.setString(4, question.getReponseParticipePasse());
+		ps.setDate(5, dateEnvoie);
+		ps.setDate(6, dateReponse);
+		return ps;
+	}
+	
 
 }
