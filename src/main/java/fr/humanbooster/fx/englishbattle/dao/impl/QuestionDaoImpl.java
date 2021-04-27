@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import fr.humanbooster.fx.englishbattle.business.Partie;
 import fr.humanbooster.fx.englishbattle.business.Question;
 import fr.humanbooster.fx.englishbattle.business.Verbe;
 import fr.humanbooster.fx.englishbattle.dao.ConnexionBdd;
@@ -55,8 +57,13 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	@Override
 	public List<Question> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+        List<Question> questions = new ArrayList<>();
+        PreparedStatement ps = connection.prepareStatement(Requetes.TOUS_LES_QUESTIONS);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            questions.add(findOne(rs.getLong("id")));
+        }
+        return questions;
 	}
 
 	@Override
@@ -66,27 +73,36 @@ public class QuestionDaoImpl implements QuestionDao {
         ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-        	
-            question = new Question(rs.getLong("partie_id"), rs.getLong("verbe_id"));
+        	Partie partie = partieDao.findOne(rs.getLong("partie_id"));
+        	Verbe verbe = verbeDao.findOne(rs.getLong("verbe_id"));
+            question = new Question(partie, verbe);
             question.setId(id);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(rs.getDate("dateEnvoi"));
             question.setDateEnvoi(calendar.getTime());
-            question.setValeur(rs.getFloat("valeur"));
-            question.setParametre(parametreDao.findOne(rs.getLong("parametre_id")));
-            question.setPatient(patientDao.findOne(rs.getLong("patient_id")));
+            calendar.setTime(rs.getDate("dateReponse"));
+            question.setDateReponse(calendar.getTime());
+            question.setReponsePreterit(rs.getString("reponsePreterit"));
+            question.setReponseParticipePasse(rs.getString("reponseParticipePasse"));
         }
         return question;
 	}
 
 	@Override
 	public boolean delete(Long id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		PreparedStatement ps = connection.prepareStatement(Requetes.SUPPRESSION_QUESTION);
+		ps.setLong(1, id);
+		try {
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public Question modify(Long id, String nouveauNom) throws SQLException {
+	public Question modify(Long id, Question nouvelleQuestion) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
