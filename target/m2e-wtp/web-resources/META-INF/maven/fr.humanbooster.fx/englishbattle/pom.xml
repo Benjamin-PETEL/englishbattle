@@ -10,7 +10,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jstl.version>1.2</jstl.version>
-		<mysql.connector.version>8.0.23</mysql.connector.version>
+		<mysql.connector.version>8.0.24</mysql.connector.version>
+		<junit.version>5.7.1</junit.version>
 	</properties>
 
 	<repositories>
@@ -154,9 +155,16 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>5.7.1</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 

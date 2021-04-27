@@ -6,8 +6,9 @@ import java.util.List;
 import fr.humanbooster.fx.englishbattle.business.Joueur;
 
 public interface JoueurDao {
-	Joueur create() throws SQLException;
+	Joueur create(Joueur joueur) throws SQLException;
 	Joueur findOne(Long id) throws SQLException;
 	List<Joueur> findAll() throws SQLException;
-	boolean delete(Long id)throws SQLException;
+	boolean update(Joueur joueur)throws SQLException;
+	boolean delete(Joueur joueur)throws SQLException;
 }
