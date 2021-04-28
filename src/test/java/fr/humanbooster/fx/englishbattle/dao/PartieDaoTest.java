@@ -45,13 +45,13 @@ class PartieDaoTest {
 		ville = new Ville("Beyrouth");
 		niveau = new Niveau("expert");
 
-		try {
-			joueur = joueurDao.create(new Joueur("email.com", "Hardy", "Bilal", "125421", niveauDao.create(niveau),
-					villeDao.create(ville)));
-		} catch (SQLException e1) {
-
-			e1.printStackTrace();
-		}
+//		try {
+//			joueur = joueurDao.create(new Joueur("email.com", "Hardy", "Bilal", "125421", niveauDao.create(niveau),
+//					villeDao.create(ville)));
+//		} catch (SQLException e1) {
+//
+//			e1.printStackTrace();
+//		}
 
 		partie = new Partie(joueur);
 		try {
