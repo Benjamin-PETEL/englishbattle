@@ -15,7 +15,11 @@ public class VerbeServiceImpl implements VerbeService {
         @Override
         public Verbe ajouterVerbe(String baseVerbale, String preterit, String participePasse, String traduction) {
                 Verbe verbe = new Verbe(baseVerbale, preterit, participePasse, traduction);
-                verbes.add(verbe);
+                try {
+					verbeDao.create(verbe);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
                 return verbe;
         }
 
