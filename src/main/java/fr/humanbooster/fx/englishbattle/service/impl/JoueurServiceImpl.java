@@ -11,7 +11,19 @@ import fr.humanbooster.fx.englishbattle.dao.impl.JoueurDaoImpl;
 import fr.humanbooster.fx.englishbattle.service.JoueurService;
 
 public class JoueurServiceImpl implements JoueurService {
+	
 	private JoueurDao joueurDao = new JoueurDaoImpl();
+        private NiveauService niveauService = new NiveauServiceImpl();
+        private VilleService villeService = new VilleServiceImpl();
+
+	@Override
+        public Joueur ajouterJoueur(String email, String nom, String prenom, String motDePasse, Long idNiveau,
+                        Long idVille) {
+                Joueur joueur = ajouterJoueur(email, nom, prenom, motDePasse);
+                joueur.setNiveau(niveauService.recupererNiveau(idNiveau));
+                joueur.setVille(villeService.recupererVilleParId(idVille));
+                return joueur;
+        }
 
 	@Override
 	public Joueur recupererJoueur(Long id) {
