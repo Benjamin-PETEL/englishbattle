@@ -12,4 +12,5 @@ public interface VerbeService {
 	Verbe recupererVerbe(Long id);
 	Verbe recupererAleatoire();
 	boolean supprimerVerbe(Long id);
+	boolean importerVerbes();
 }
