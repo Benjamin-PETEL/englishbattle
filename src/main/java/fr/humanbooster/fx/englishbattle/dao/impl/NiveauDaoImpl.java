@@ -46,7 +46,7 @@ public class NiveauDaoImpl implements NiveauDao {
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			Niveau niveau = new Niveau(rs.getString("nom"));
-			niveau.setIdNiveau(rs.getLong("idNiveau"));
+			niveau.setIdNiveau(rs.getLong("id"));
 			niveaux.add(niveau);
 		}
 		return niveaux;
@@ -60,7 +60,7 @@ public class NiveauDaoImpl implements NiveauDao {
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
 			niveau = new Niveau(rs.getString("nom"));
-			niveau.setIdNiveau(rs.getLong("idNiveau"));
+			niveau.setIdNiveau(rs.getLong("id"));
 		}
 		return niveau;
 	}

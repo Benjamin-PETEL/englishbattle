@@ -30,8 +30,8 @@ public class Requetes {
 
         // Requetes des villes
         public static final String AJOUT_VILLE = "INSERT INTO ville (nom) VALUES (?)";
-        public static final String VILLE_PAR_ID = "SELECT id, nom WHERE id=?";
-        public static final String VILLE_PAR_NOM = "SELECT id, nom WHERE nom=?";
+        public static final String VILLE_PAR_ID = "SELECT id, nom FROM ville WHERE id=?";
+        public static final String VILLE_PAR_NOM = "SELECT id, nom FROM ville WHERE nom=?";
         public static final String TOUTES_LES_VILLES = "SELECT id, nom FROM ville";
         public static final String SUPPRESSION_VILLE = "DELETE FROM ville WHERE id=?";
 
