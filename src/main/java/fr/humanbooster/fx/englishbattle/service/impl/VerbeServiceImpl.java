@@ -12,6 +12,13 @@ public class VerbeServiceImpl implements VerbeService {
 
 	VerbeDao verbeDao = new VerbeDaoImpl();
 	
+        @Override
+        public Verbe ajouterVerbe(String baseVerbale, String preterit, String participePasse, String traduction) {
+                Verbe verbe = new Verbe(baseVerbale, preterit, participePasse, traduction);
+                verbes.add(verbe);
+                return verbe;
+        }
+
 	@Override
 	public Verbe ajouterVerbe(Verbe verbe) {
 		try {
