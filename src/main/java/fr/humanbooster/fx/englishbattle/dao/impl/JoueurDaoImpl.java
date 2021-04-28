@@ -39,12 +39,12 @@ public class JoueurDaoImpl implements JoueurDao{
 		preparedStatement.setString(3, joueur.getNom());
 		preparedStatement.setString(4, joueur.getPrenom());
 		preparedStatement.setLong(5, joueur.getNiveau().getIdNiveau());
-		preparedStatement.setString(6, joueur.getVille().getNom());
+		preparedStatement.setLong(6, joueur.getVille().getIdVille());
 		preparedStatement.executeUpdate();
 		ResultSet rs = preparedStatement.getGeneratedKeys();
 		if (rs.next()) {
 			// On affecte à la compagnie donnée en paramètre l'id choisi par MySql
-			joueur.setId(rs.getLong(5));			
+			joueur.setId(rs.getLong(1));			
 			}
 		return joueur;
 	}
