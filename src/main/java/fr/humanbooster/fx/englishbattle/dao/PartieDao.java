@@ -18,6 +18,4 @@ public interface PartieDao {
 
 	boolean update(Long id, Joueur joueur) throws SQLException;
 
-	Partie findOne(Joueur joueur) throws SQLException;
-
 }

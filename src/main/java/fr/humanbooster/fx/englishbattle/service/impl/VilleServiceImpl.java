@@ -1,4 +1,4 @@
-package fr.humanbooster.fx.englishbattle.service.util;
+package fr.humanbooster.fx.englishbattle.service.impl;
 
 import java.sql.SQLException;
 import java.util.List;

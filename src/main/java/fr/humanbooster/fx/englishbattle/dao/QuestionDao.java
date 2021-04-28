@@ -10,6 +10,16 @@ public interface QuestionDao {
 	Question create(Question question) throws SQLException;
 	List<Question> findAll() throws SQLException;
 	Question findOne(Long id) throws SQLException;
+	
+	/**
+	 * 
+	 * @param id l'ID de la question à modifier
+	 * @param nouvelleQuestion: un objet Question avec les parametre de la nouvelle question 
+	 * @return renvoie la nouvelle question avec son ID si l'ID est disponible dans la base. Retourne null si l'id nest pas disponible dans la base.
+	 * @throws SQLException
+	 */
+	Question update(Long id, Question nouvelleQuestion) throws SQLException;
+	
 	boolean delete(Long id) throws SQLException;
-	Question modify(Long id, Question nouvelleQuestion) throws SQLException;
+	
 }

@@ -38,7 +38,6 @@ public class Requetes {
         // Requetes des parties
         public static final String AJOUT_PARTIE = "INSERT INTO partie (joueur_id) VALUES (?)";
         public static final String PARTIE_PAR_ID = "SELECT id, joueur_id FROM partie WHERE id=?";
-        public static final String PARTIES_PAR_JOUEUR = "SELECT id, joueur_id FROM partie WHERE joueur_id= ?";
         public static final String TOUTES_LES_PARTIES = "SELECT id, joueur_id FROM partie";
         public static final String UPDATE_PARTIE = "UPDATE partie SET joueur_id=? WHERE id =?";
         public static final String SUPPRESSION_PARTIE = "DELETE FROM partie WHERE id=?";

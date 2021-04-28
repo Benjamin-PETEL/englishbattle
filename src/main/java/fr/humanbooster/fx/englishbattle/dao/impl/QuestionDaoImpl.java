@@ -94,15 +94,18 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public Question modify(Long id, Question nouvelleQuestion) throws SQLException {
+	public Question update(Long id, Question nouvelleQuestion) throws SQLException {
 		PreparedStatement ps = initialiseStatement(Requetes.UPDATE_QUESTION, nouvelleQuestion);
 		ps.setLong(7, id);
 		ps.executeUpdate();
 		ResultSet rs = ps.getGeneratedKeys();
 		if (rs.next()) {
 			nouvelleQuestion.setId(rs.getLong(1));
+			return nouvelleQuestion;
 		}
-		return nouvelleQuestion;
+		else {
+			return null;
+		}
 	}
 	
 	private PreparedStatement initialiseStatement(String requete, Question question) throws SQLException {

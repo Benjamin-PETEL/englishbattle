@@ -1,4 +1,4 @@
-package fr.humanbooster.englishbattle.service;
+package fr.humanbooster.fx.englishbattle.service;
 
 import java.util.List;
 
