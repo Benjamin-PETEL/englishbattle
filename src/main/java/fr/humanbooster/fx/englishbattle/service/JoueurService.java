@@ -8,12 +8,16 @@ import fr.humanbooster.fx.englishbattle.business.Ville;
 
 public interface JoueurService {
 
+	Joueur ajouterJoueur(String email, String nom, String prenom, String motDePasse, Long idNiveau, Long idVille);
+
 	/**
 	 * 
 	 * @param email
 	 * @param nom
 	 * @param prenom
 	 * @param motDePasse
+  	 * @param ville
+	 * @param niveau 
 	 * @return un Object joueur complet si l'insertion en base s'est effectué, null sinon
 	 */
 	Joueur ajouterJoueur(String email, String nom, String prenom, String motDePasse, Ville ville, Niveau niveau);
