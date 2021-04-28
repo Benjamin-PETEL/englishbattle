@@ -37,7 +37,7 @@ class QuestionDaoTest {
 	void testCreate() {
 		// creation objet question
 		Question question2 = new Question(partie, verbe);
-		
+		question2.setDateReponse(new Date());
 		try {
 			question = questionDao.create(question2);
 		} catch (SQLException e) {
@@ -94,21 +94,18 @@ class QuestionDaoTest {
 	void testModification() {
 		//je relance la methode create() pour garantir qu'il y ait au moins un objet dans ma table sinon j'aurais une failure car le test 4 a supprimé celui créé par le test 1
 		testCreate();
-		String nouvelleReponsePreterit = "test";
-		String nouvelleReponseParticipePasse = "test";
+		Verbe verbe = new Verbe("baseverbaleTest","preteritTestModification","participePasseTestModification");
 		Question questionTest = null;
-		Date date = new Date();
-		Date date2 = new Date();
-		
 		
 		try {
 			questionTest = questionDao.findAll().get(0);
-			questionDao.modify(questionTest.getId(), partie, verbe, nouvelleReponsePreterit, nouvelleReponseParticipePasse,date,date2);
+			questionTest.setVerbe(verbe);
+			questionDao.update(questionTest.getId(), questionTest);
 			questionTest = questionDao.findAll().get(0);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		assertEquals(questionTest.getReponsePreterit(),nouvelleReponsePreterit);
-		assertEquals(questionTest.getReponseParticipePasse(),nouvelleReponseParticipePasse);
+		assertEquals(questionTest.getReponsePreterit(),verbe.getPreterit());
+		assertEquals(questionTest.getReponseParticipePasse(),verbe.getParticipePasse());
 	}
 }

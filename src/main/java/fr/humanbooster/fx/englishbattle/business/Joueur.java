@@ -21,6 +21,16 @@ public class Joueur {
 		
 	}
 	
+	
+	
+	public Joueur(String email, String motDePasse) {
+		super();
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
+
+
+
 	public Joueur(String email, String nom, String prenom, String motDePasse) {
 		this();
 		this.email = email;

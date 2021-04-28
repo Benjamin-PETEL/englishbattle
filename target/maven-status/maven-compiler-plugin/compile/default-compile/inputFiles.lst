@@ -2,6 +2,7 @@ C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\human
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\VilleDao.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\exceptions\AucunVerbeException.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\VilleService.java
+C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\servlets\ConnexionServlet.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\PartieDaoImpl.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\NiveauDao.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\VilleDaoImpl.java
@@ -28,6 +29,7 @@ C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\human
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\VilleServiceImpl.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\NiveauServiceImpl.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\PartieService.java
+C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\JoueurDaoImpl.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\NiveauDaoImpl.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\QuestionDao.java
 C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\QuestionDaoImpl.java
