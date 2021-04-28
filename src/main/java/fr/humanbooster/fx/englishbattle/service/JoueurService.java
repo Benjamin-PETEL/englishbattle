@@ -16,7 +16,7 @@ public interface JoueurService {
 	 * @param motDePasse
 	 * @return un Object joueur complet si l'insertion en base s'est effectué, null sinon
 	 */
-	Joueur ajouterJoueur(String email, String nom, String prenom, String motDePasse);
+	Joueur ajouterJoueur(String email, String nom, String prenom, String motDePasse, Ville ville, Niveau niveau);
 
 	/**
 	 * 

@@ -34,7 +34,7 @@ public class NiveauServiceImpl implements NiveauService {
 	}
 
 	@Override
-	public List<Niveau> recupererNiveaus() {
+	public List<Niveau> recupererNiveaux() {
 		try {
 			return niveauDao.findAll();
 		} catch (SQLException e) {

@@ -9,9 +9,8 @@ public interface NiveauService {
 
 	Niveau ajouterNiveau(String nom);
 	
-	List<Niveau> recupererNiveaux();
-	
 	Niveau recupererNiveau(Long id);
 	
-	boolean supprimerNiveau(Long id);
+	List<Niveau> recupererNiveaux();
+	
 }

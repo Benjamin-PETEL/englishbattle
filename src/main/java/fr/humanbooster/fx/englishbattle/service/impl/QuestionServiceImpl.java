@@ -1,7 +1,6 @@
 package fr.humanbooster.fx.englishbattle.service.impl;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import fr.humanbooster.fx.englishbattle.business.Partie;
@@ -16,13 +15,10 @@ public class QuestionServiceImpl implements QuestionService {
 	QuestionDao questionDao = new QuestionDaoImpl();
 	
 	@Override
-	public Question ajouterQuestion(Question question) {
-		try {
-			return questionDao.create(question);
-		} catch (SQLException e) {
-			System.out.println(e);
-			return null;
-		}
+	public Question ajouterQuestion(Partie partie, Verbe verbe) {
+        Question question = new Question(partie, verbe);
+        partie.addQuestion(question);
+        return question;
 	}
 
 	@Override
@@ -56,10 +52,12 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public boolean modify(Long id, Partie partie, Verbe verbe, String reponsePreterit, String reponseParticipePasse,
-			Date dateEnvoi, Date dateReponse) {
+	public boolean mettreAJourQuestion(Long id, String reponsePreterit, String reponseParticipePasse) {
 		try {
-			questionDao.modify(id, partie, verbe, reponsePreterit, reponseParticipePasse, dateEnvoi, dateReponse);
+			Question question = questionDao.findOne(id);
+			question.setReponsePreterit(reponsePreterit);
+			question.setReponseParticipePasse(reponseParticipePasse);
+			questionDao.update(id, question);
 			return true;
 		} catch (SQLException e) {
 			System.out.println(e);
