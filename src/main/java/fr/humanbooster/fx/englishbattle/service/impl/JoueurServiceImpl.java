@@ -9,6 +9,8 @@ import fr.humanbooster.fx.englishbattle.business.Ville;
 import fr.humanbooster.fx.englishbattle.dao.JoueurDao;
 import fr.humanbooster.fx.englishbattle.dao.impl.JoueurDaoImpl;
 import fr.humanbooster.fx.englishbattle.service.JoueurService;
+import fr.humanbooster.fx.englishbattle.service.NiveauService;
+import fr.humanbooster.fx.englishbattle.service.VilleService;
 
 public class JoueurServiceImpl implements JoueurService {
 	
@@ -19,9 +21,9 @@ public class JoueurServiceImpl implements JoueurService {
 	@Override
         public Joueur ajouterJoueur(String email, String nom, String prenom, String motDePasse, Long idNiveau,
                         Long idVille) {
-                Joueur joueur = ajouterJoueur(email, nom, prenom, motDePasse);
-                joueur.setNiveau(niveauService.recupererNiveau(idNiveau));
-                joueur.setVille(villeService.recupererVilleParId(idVille));
+				Niveau niveau = niveauService.recupererNiveau(idNiveau);
+				Ville ville = villeService.recupererVille(idVille);
+                Joueur joueur = ajouterJoueur(email, nom, prenom, motDePasse, ville, niveau);
                 return joueur;
         }
 
