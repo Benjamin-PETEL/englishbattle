@@ -56,11 +56,18 @@ public class JoueurDaoImpl implements JoueurDao{
 		preparedStatement.setLong(1, id);
 		ResultSet rs = preparedStatement.executeQuery();
 		if (rs .next()) {
-			String email = rs.getString("email");
-			String nom = rs.getString("nom");
-			String prenom = rs.getString("prenom");
-			String motDePasse = rs.getString("motDePasse");
+			// On charge ces données dans un nouvel objet de type Compagnie
 			Joueur joueur = new Joueur();
+			// la donnée lue dans la colonne nom est affectée au nom
+			// de l'objet compagnie
+			joueur.setNom(rs .getString("nom"));
+			// la donnée lue dans la colonne id est affectée au nom
+			// de l'objet compagnie
+			joueur.setId(rs .getLong("id"));
+			joueur.setNom(rs .getString("prenom"));
+			joueur.setNom(rs .getString("ville"));
+			joueur.setId(rs .getLong("niveau"));
+			
 			return joueur;
 			}
 		return null;
@@ -81,8 +88,8 @@ public class JoueurDaoImpl implements JoueurDao{
 	}
 
 	@Override
-	public boolean delete(Joueur joueur) throws SQLException {
-		Joueur joueurAEffacer =  findOne(joueur.getId());
+	public boolean delete(Long id) throws SQLException {
+		Joueur joueurAEffacer =  findOne(id);
 		//si l'id du joueur est different de null alors on execute la requete
 		if (joueurAEffacer != null) {
 			PreparedStatement ps = connexion.prepareStatement(Requetes.SUPPRESSION_JOUEUR);
@@ -93,7 +100,7 @@ public class JoueurDaoImpl implements JoueurDao{
 	}
 
 	@Override
-	public boolean update(Joueur joueur) throws SQLException {
+	public boolean update(Long id , Joueur joueur) throws SQLException {
 		
 		PreparedStatement ps = connexion.prepareStatement(Requetes.UPDATE_JOUEUR);
 		ps.setString(1,joueur.getEmail());
@@ -103,6 +110,7 @@ public class JoueurDaoImpl implements JoueurDao{
 		//On recupere l'id du niveau du joueur, cette id me sert à remplacer le 4eme "?"
 		ps.setLong(5,joueur.getNiveau().getIdNiveau());
 		ps.setLong(6, joueur.getVille().getIdVille());
+		ps.setLong(7, id);
 		ps.executeUpdate();
 		
 		return true;

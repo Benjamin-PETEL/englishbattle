@@ -9,6 +9,6 @@ public interface JoueurDao {
 	Joueur create(Joueur joueur) throws SQLException;
 	Joueur findOne(Long id) throws SQLException;
 	List<Joueur> findAll() throws SQLException;
-	boolean update(Joueur joueur)throws SQLException;
-	boolean delete(Joueur joueur)throws SQLException;
+	boolean delete(Long id) throws SQLException;
+	boolean update(Long id, Joueur joueur) throws SQLException;
 }

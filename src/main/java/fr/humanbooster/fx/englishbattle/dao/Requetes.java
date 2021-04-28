@@ -30,10 +30,10 @@ public class Requetes {
 
         // Requetes des villes
         public static final String AJOUT_VILLE = "INSERT INTO ville (nom) VALUES (?)";
-        public static final String VILLE_PAR_ID = "SELECT idVille, nom WHERE idVille=?";
-        public static final String VILLE_PAR_NOM = "SELECT idVille, nom WHERE nom=?";
-        public static final String TOUTES_LES_VILLES = "SELECT idVille, nom FROM ville";
-        public static final String SUPPRESSION_VILLE = "DELETE FROM ville WHERE idVille=?";
+        public static final String VILLE_PAR_ID = "SELECT id, nom WHERE id=?";
+        public static final String VILLE_PAR_NOM = "SELECT id, nom WHERE nom=?";
+        public static final String TOUTES_LES_VILLES = "SELECT id, nom FROM ville";
+        public static final String SUPPRESSION_VILLE = "DELETE FROM ville WHERE id=?";
 
         // Requetes des parties
         public static final String AJOUT_PARTIE = "INSERT INTO partie (joueur_id) VALUES (?)";
@@ -43,4 +43,3 @@ public class Requetes {
         public static final String SUPPRESSION_PARTIE = "DELETE FROM partie WHERE id=?";
 
 }
-

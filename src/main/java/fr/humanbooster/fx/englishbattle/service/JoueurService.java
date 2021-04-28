@@ -3,6 +3,8 @@ package fr.humanbooster.fx.englishbattle.service;
 import java.util.List;
 
 import fr.humanbooster.fx.englishbattle.business.Joueur;
+import fr.humanbooster.fx.englishbattle.business.Niveau;
+import fr.humanbooster.fx.englishbattle.business.Ville;
 
 public interface JoueurService {
 
@@ -25,12 +27,28 @@ public interface JoueurService {
 
 	/**
 	 * 
-	 * @return 
+	 * @return la liste des joueurs. La liste est vide si il n'y a aucun joueur en BDD. Retourne null si il y a une erreur
 	 */
 	List<Joueur> recupererJoueurs();
 
-	boolean mettreAJourJoueur(Long id, String email, String nom, String prenom, String motDePasse);
+	/**
+	 * 
+	 * @param id
+	 * @param email
+	 * @param nom
+	 * @param prenom
+	 * @param motDePasse
+	 * @param ville
+	 * @param niveau
+	 * @return true si le joueur est mis à jour / false si la methode update n'a pas aboutie
+	 */
+	boolean mettreAJourJoueur(Long id, String email, String nom, String prenom, String motDePasse, Ville ville,Niveau niveau);
 	
+	/**
+	 * 
+	 * @param id du joueur à supprimer
+	 * @return true si le joueur est supprimer de la base de donnée, false sinon
+	 */
 	boolean supprimerJoueur(Long id);
 
 }

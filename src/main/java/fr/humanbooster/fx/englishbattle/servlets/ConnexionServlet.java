@@ -9,17 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.humanbooster.fx.englishbattle.business.Joueur;
+
 /**
- * Servlet implementation class IndexServlet
+ * Servlet implementation class ConnexionServlet
  */
 @WebServlet("/connexion")
-public class IndexServlet extends HttpServlet {
+public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexServlet() {
+    public ConnexionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,10 +29,14 @@ public class IndexServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String mdp = request.getParameter("mdp");
-        String email = request.getParameter("email");
-        System.out.println(new Date() + "Rentrer un email : "+ email + "  un mot de passe : " + mdp);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// On récupère la donnée saisie dans le champ connexion
+		String email = request.getParameter("email");
+		String motDePasse = request.getParameter("motDePasse");
+		
+        System.out.println(new Date() + "Email : "+ email + " Mdp : " + motDePasse);
+        response.getWriter().append("Connexion");
 	}
 
 }

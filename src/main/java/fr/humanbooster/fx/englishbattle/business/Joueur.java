@@ -15,18 +15,20 @@ public class Joueur {
 	private Ville ville;
 	private List<Partie> parties = new ArrayList<>();
 	
+	
+	
+	public Joueur() {
+		
+	}
+	
 	public Joueur(String email, String nom, String prenom, String motDePasse) {
-		super();
+		this();
 		this.email = email;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.motDePasse = motDePasse;
 	}
 
-	public Joueur(String email, String motDePasse) {
-		this.email = email;
-		this.motDePasse = motDePasse;
-	}
 
 	public Long getId() {
 		return id;
