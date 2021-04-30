@@ -38,6 +38,7 @@ public class JoueurDaoImpl implements JoueurDao{
 		preparedStatement.setString(2, joueur.getMotDePasse());
 		preparedStatement.setString(3, joueur.getNom());
 		preparedStatement.setString(4, joueur.getPrenom());
+		preparedStatement.setLong(5, joueur.getNiveau().getIdNiveau());
 		preparedStatement.setLong(6, joueur.getVille().getIdVille());
 		preparedStatement.executeUpdate();
 		ResultSet rs = preparedStatement.getGeneratedKeys();
