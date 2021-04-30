@@ -2,22 +2,22 @@ package fr.humanbooster.fx.englishbattle.business;
  
 public class Niveau {
  
-    private Long idNiveau;
+    private Long id;
     private String nom;
     private static Long compteur = 0L;
  
     public Niveau(String nom) {
         super();
-        this.idNiveau = ++compteur;
+        this.id = ++compteur;
         this.nom = nom;
     }
  
-    public Long getIdNiveau() {
-        return idNiveau;
+    public Long getid() {
+        return id;
     }
  
-    public void setIdNiveau(Long idNiveau) {
-        this.idNiveau = idNiveau;
+    public void setid(Long id) {
+        this.id = id;
     }
  
     public String getNom() {
@@ -30,7 +30,7 @@ public class Niveau {
  
     @Override
     public String toString() {
-        return "Niveau [idNiveau=" + idNiveau + ", nom=" + nom + "]";
+        return "Niveau [id=" + id + ", nom=" + nom + "]";
     }
      
 }
