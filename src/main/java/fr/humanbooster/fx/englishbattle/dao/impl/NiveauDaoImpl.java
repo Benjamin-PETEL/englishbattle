@@ -47,7 +47,6 @@ public class NiveauDaoImpl implements NiveauDao {
 		while (rs.next()) {
 			Niveau niveau = new Niveau(rs.getString("nom"));
 			niveau.setid(rs.getLong("id"));
-
 			niveaux.add(niveau);
 		}
 		return niveaux;

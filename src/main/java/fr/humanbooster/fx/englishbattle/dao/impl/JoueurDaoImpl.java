@@ -108,7 +108,7 @@ public class JoueurDaoImpl implements JoueurDao{
 		ps.setString(3, joueur.getNom());
 		ps.setString(4, joueur.getPrenom());
 		//On recupere l'id du niveau du joueur, cette id me sert à remplacer le 4eme "?"
-		ps.setLong(5,joueur.getNiveau().getIdNiveau());
+		ps.setLong(5,joueur.getNiveau().getid());
 		ps.setLong(6, joueur.getVille().getIdVille());
 		ps.setLong(7, id);
 		ps.executeUpdate();
