@@ -46,7 +46,7 @@
             <select name="ID_NIVEAU">  
                   <c:forEach var="niveau" items="${niveaux}">
            
-               			 <option value="${niveau.idNiveau }">${niveau.nom }</option>
+               			 <option value="${niveau.id }">${niveau.nom }</option>
 
                 </c:forEach> 
      
