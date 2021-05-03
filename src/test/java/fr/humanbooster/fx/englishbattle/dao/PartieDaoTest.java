@@ -98,12 +98,14 @@ class PartieDaoTest {
 		Niveau niveauModifie = new Niveau("moyen");
 
 		// On crée un nouveau joueur
+
 		try {
 			 joueurModifie = joueurDao.create(new Joueur("email777.com", "Dupont", "jean", "7171"));
 		} catch (SQLException e1) {
 
 			e1.printStackTrace();
 		}
+
 
 		// On teste le boolean que renvoie la méthode update
 		try {
