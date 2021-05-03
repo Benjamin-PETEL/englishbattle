@@ -95,4 +95,18 @@ public class JoueurServiceImpl implements JoueurService {
 		return false;
 	}
 
+	@Override
+	public Joueur recupererJoueurParEmailEtMotDePasse(String email, String motDePasse) {
+		Joueur monjoueur = null;
+		for(Joueur joueur : recupererJoueurs()) {
+			if(joueur.getEmail().equals(email)) {
+				if(joueur.getMotDePasse().equals(motDePasse)) {
+					monjoueur = joueur;
+					break;
+				}
+			}
+		}
+		return monjoueur;
+	}
+
 }

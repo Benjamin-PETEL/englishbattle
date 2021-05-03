@@ -8,10 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Battle</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<jsp:include page="entete.jsp" />
     <h1>Bienvenue sur English Battle !</h1>
-    <form action="login" method="POST" >
+    <form action="connexion" method="POST" >
         <div>
             <label for="email">Email</label>
             <input name ="email" type="email">
@@ -20,7 +23,7 @@
             <label for="mdp">Mot de passe</label>
             <input type="text" name="mdp">
         </div>
-        <input type="submit">        
+        <button class="btn" type="submit">Se connecter</button>
 
     </form>
     <a href="inscription">Inscription</a>

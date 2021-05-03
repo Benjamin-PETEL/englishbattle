@@ -8,17 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class IndexServlet
- */
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import fr.humanbooster.fx.englishbattle.business.Joueur;
 
+/**
+ * Servlet implementation class DeconnexionServlet
+ */
+@WebServlet("/deconnexion")
+public class DeconnexionServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexServlet() {
+    public DeconnexionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,16 +29,19 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("WEB-INF/index.jsp").include(request, response);
-		
+		Joueur joueur = (Joueur) request.getSession().getAttribute("joueur");
+		if(joueur != null) {
+			request.getSession().invalidate();
+		}
+		request.getRequestDispatcher("index").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

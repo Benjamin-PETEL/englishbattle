@@ -34,5 +34,4 @@ public class Niveau {
 		return "Niveau [id=" + id + ", nom=" + nom + "]";
 	}
 
-
 }

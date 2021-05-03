@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.humanbooster.fx.englishbattle.business.Niveau;
 import fr.humanbooster.fx.englishbattle.business.Ville;
+import fr.humanbooster.fx.englishbattle.service.JoueurService;
 import fr.humanbooster.fx.englishbattle.service.NiveauService;
 import fr.humanbooster.fx.englishbattle.service.VilleService;
 import fr.humanbooster.fx.englishbattle.service.impl.NiveauServiceImpl;
@@ -26,6 +27,7 @@ public class InscriptionServlet extends HttpServlet {
 	
 	private static VilleService villeService = new VilleServiceImpl();
 	private static NiveauService niveauService = new NiveauServiceImpl();
+	private static JoueurService joueurService = new JoueurServiceImpl();
 	private static List<Ville> villes = new ArrayList<>();
 	private static List<Niveau> niveaux = new ArrayList<>();   
     /**
@@ -76,6 +78,9 @@ public class InscriptionServlet extends HttpServlet {
 		request.setAttribute("niveau", niveau.getNom());
 		request.setAttribute("mdp", mdp);
 		request.getRequestDispatcher("WEB-INF/merciInscription.jsp").include(request, response);
+
+		joueurService.ajouterJoueur(email, nom, prenom, mdp, niveau.getid(), ville.getIdVille());
+
 	}
 
 }
