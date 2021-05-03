@@ -1,5 +1,7 @@
 package fr.humanbooster.fx.englishbattle.dao;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,11 +20,15 @@ import fr.humanbooster.fx.englishbattle.dao.impl.VerbeDaoImpl;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class VerbeDaoTest {
 
+	// ----------------------------- Attributs ----------------------------------
 	private static VerbeDao verbeDao = new VerbeDaoImpl();
-	private static Verbe verbe = null;
+	private static Verbe verbeIn = null;
+	private static Verbe verbeOut = null;
 	private static List<Verbe> verbes = null;
 	
 	
+	
+	// -------------------------------- Tests -----------------------------------
 	@Test
 	@Order(1)
 	@DisplayName("teste la création d'un verbe")
@@ -31,21 +37,42 @@ class VerbeDaoTest {
 		String participePasse = "participePasse";
 		String preterit = "preterit";
 		String traduction = "traduction";
-		Verbe verbe2 = new Verbe(baseVerbale, preterit, participePasse, traduction);
+		Verbe verbe = new Verbe(baseVerbale, preterit, participePasse, traduction);
 		
 		try {
-			verbe = verbeDao.create(verbe2);
+			verbeIn = verbeDao.create(verbe);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertNotNull(verbe);
-		assertNotNull(verbe.getId());
-		assertTrue(verbe.equals(verbe2));
+		// Tests
+		assertNotNull(verbeIn);
+		assertNotNull(verbeIn.getId());
+		assertEquals(verbeIn.getBaseVerbale(),verbe.getBaseVerbale());
+		assertEquals(verbeIn.getParticipePasse(),verbe.getParticipePasse());
+		assertEquals(verbeIn.getPreterit(),verbe.getPreterit());
+		assertEquals(verbeIn.getTraduction(),verbe.getTraduction());
 	}
+	
 	
 	@Test
 	@Order(2)
+	@DisplayName("teste la récupération d'un verbe par son Id")
+	void testFindOne() {
+		verbeOut = null;
+		try {
+			verbeOut = verbeDao.findOne(verbeIn.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// Tests
+		assertNotNull(verbeOut);
+		assertNotNull(verbeOut.getId());
+		assertTrue(verbeOut.equals(verbeIn));
+	}
+	
+	
+	@Test
+	@Order(3)
 	@DisplayName("teste la recupération de la liste des verbes")
 	void testFindAll() {
 		try {
@@ -53,41 +80,30 @@ class VerbeDaoTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		// Tests
 		assertNotNull(verbes);
 		assertTrue(verbes.size() > 0);
+		assertTrue(verbes.contains(verbeIn));
 	}
 	
-	@Test
-	@Order(3)
-	@DisplayName("teste la récupération d'un verbe par son Id")
-	void testFindOne() {
-		Verbe verbe3 = null;
-		try {
-			verbe3 = verbeDao.findOne(verbe.getId());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		assertNotNull(verbe3);
-		assertNotNull(verbe3.getId());
-		assertTrue(verbe3.equals(verbe));
-	}
 	
 	@Test
 	@Order(4)
 	@DisplayName("teste la récupération d'un verbe aléatoire")
 	void testFindAleatoire() {
-		Verbe verbe4 = null;
+		verbeOut = null;
 		try {
-			verbe4 = verbeDao.findAleatoire();
+			verbeOut = verbeDao.findAleatoire();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		assertNotNull(verbe4);
-		assertNotNull(verbe4.getId());
-		assertNotNull(verbe4.getBaseVerbale());
-		assertNotNull(verbe4.getParticipePasse());
-		assertNotNull(verbe4.getPreterit());
-		assertNotNull(verbe4.getTraduction());
+		// Tests
+		assertNotNull(verbeOut);
+		assertNotNull(verbeOut.getId());
+		assertNotNull(verbeOut.getBaseVerbale());
+		assertNotNull(verbeOut.getParticipePasse());
+		assertNotNull(verbeOut.getPreterit());
+		assertNotNull(verbeOut.getTraduction());
 	}
 	
 	
@@ -97,10 +113,13 @@ class VerbeDaoTest {
 	void testDelete() {
 		boolean ReleveaEteEfface = false;
 		try {
-			ReleveaEteEfface = verbeDao.delete(verbe.getId());
+			ReleveaEteEfface = verbeDao.delete(verbeIn.getId());
+			verbes = verbeDao.findAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		// Tests
 		assertTrue(ReleveaEteEfface);
+		assertFalse(verbes.contains(verbeIn));
 	}
 }
