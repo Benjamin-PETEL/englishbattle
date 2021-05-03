@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<jsp:include page="entete.jsp" />
     <section>
         <header>
         <img src="img/LogoEnglishBattle.png" alt="logo" width="350px">
@@ -31,18 +35,22 @@
                 <label for="nom">Ville</label>
                 <select name="ID_VILLE">
            
-                <option value="1">Lyon</option>
-                <option value="2">Saint-Galmier</option>
-                <option value="3">Clermont-Ferrand</option>
-                <option value="4">Aix-en-Pce</option>
+          <c:forEach var="ville" items="${villes}">
+           
+                <option value="${ville.idVille }">${ville.nom }</option>
+
+                </c:forEach>
              </select>
             </div>
             <div>
             <label for="nom">Niveau Joueur</label>
-            <select name="ID_NIVEAU">
-                <option value="1">Debutant</option>
-                <option value="2">Intermédiaire</option>
-                <option value="3">Expert</option>
+            <select name="ID_NIVEAU">  
+                  <c:forEach var="niveau" items="${niveaux}">
+           
+               			 <option value="${niveau.id }">${niveau.nom }</option>
+
+                </c:forEach> 
+     
             </select>
             </div>
             <div>

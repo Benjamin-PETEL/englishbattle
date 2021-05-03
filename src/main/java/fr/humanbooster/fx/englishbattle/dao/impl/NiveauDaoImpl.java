@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.humanbooster.fx.englishbattle.business.Niveau;
-import fr.humanbooster.fx.englishbattle.business.Ville;
 import fr.humanbooster.fx.englishbattle.dao.ConnexionBdd;
 import fr.humanbooster.fx.englishbattle.dao.NiveauDao;
 import fr.humanbooster.fx.englishbattle.dao.Requetes;

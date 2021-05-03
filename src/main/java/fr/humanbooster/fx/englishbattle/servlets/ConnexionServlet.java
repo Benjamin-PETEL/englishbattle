@@ -1,7 +1,6 @@
 package fr.humanbooster.fx.englishbattle.servlets;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.humanbooster.fx.englishbattle.business.Joueur;
+import fr.humanbooster.fx.englishbattle.service.JoueurService;
+import fr.humanbooster.fx.englishbattle.service.impl.JoueurServiceImpl;
+
 /**
  * Servlet implementation class ConnexionServlet
  */
 @WebServlet("/connexion")
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static JoueurService joueurService = new JoueurServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,10 +36,17 @@ public class ConnexionServlet extends HttpServlet {
 		
 		// On récupère la donnée saisie dans le champ connexion
 		String email = request.getParameter("email");
-		String motDePasse = request.getParameter("motDePasse");
+		String motDePasse = request.getParameter("mdp");
 		
-        System.out.println(new Date() + "Email : "+ email + " Mdp : " + motDePasse);
-        response.getWriter().append("Connexion");
+		Joueur joueur = joueurService.recupererJoueurParEmailEtMotDePasse(email, motDePasse);
+        
+		if (joueur == null) {
+			request.setAttribute("utilisateurNonTrouve", "Utilisateur non trouvé!");
+			request.getRequestDispatcher("WEB-INF/erreur.jsp").forward(request, response);
+		} else {
+			request.getSession().setAttribute("joueur", joueur);
+			request.getRequestDispatcher("WEB-INF/jeu.jsp").forward(request, response);
+		}
 	}
 
 }

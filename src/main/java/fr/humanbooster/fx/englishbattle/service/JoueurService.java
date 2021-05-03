@@ -55,4 +55,6 @@ public interface JoueurService {
 	 */
 	boolean supprimerJoueur(Long id);
 
+	
+	public Joueur recupererJoueurParEmailEtMotDePasse(String email, String motDePasse);
 }

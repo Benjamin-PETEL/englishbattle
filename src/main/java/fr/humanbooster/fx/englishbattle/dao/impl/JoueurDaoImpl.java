@@ -17,7 +17,7 @@ import fr.humanbooster.fx.englishbattle.dao.Requetes;
 public class JoueurDaoImpl implements JoueurDao{
 	
 	private Connection connexion ;
-	private NiveauDao niveauDao;
+	private NiveauDao niveauDao = new NiveauDaoImpl();
 	public JoueurDaoImpl() {
 		try {
 			connexion = ConnexionBdd.getConnection();
@@ -38,6 +38,7 @@ public class JoueurDaoImpl implements JoueurDao{
 		preparedStatement.setString(2, joueur.getMotDePasse());
 		preparedStatement.setString(3, joueur.getNom());
 		preparedStatement.setString(4, joueur.getPrenom());
+		preparedStatement.setLong(5, joueur.getNiveau().getid());
 		preparedStatement.setLong(6, joueur.getVille().getIdVille());
 		preparedStatement.executeUpdate();
 		ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -82,7 +83,11 @@ public class JoueurDaoImpl implements JoueurDao{
 			joueur.setId(rs.getLong("id"));
 			joueur.setNom(rs.getString("nom"));
 			joueur.setPrenom("prenom");
-			joueur.setNiveau(niveauDao.findOne(rs.getLong("id")));		}
+			joueur.setNiveau(niveauDao.findOne(rs.getLong("niveau_id")));
+			joueur.setMotDePasse(rs.getString("motDePasse"));
+			joueur.setEmail(rs.getString("email"));
+			joueurs.add(joueur);
+		}
 		return joueurs;
 	}
 
