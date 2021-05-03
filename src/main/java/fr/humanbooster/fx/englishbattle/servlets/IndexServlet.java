@@ -1,8 +1,6 @@
 package fr.humanbooster.fx.englishbattle.servlets;
 
 import java.io.IOException;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,12 +23,22 @@ public class IndexServlet extends HttpServlet {
     }
 
 	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("WEB-INF/index.jsp").include(request, response);
+		
+	}
+
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String mdp = request.getParameter("mdp");
-        String email = request.getParameter("email");
-        System.out.println(new Date() + "Rentrer un email : "+ email + "  un mot de passe : " + mdp);
+	
+		
+
+		
 	}
 
 }
