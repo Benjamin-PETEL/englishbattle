@@ -20,10 +20,29 @@ body {
   height: 100%;
   font-family: sans-serif;
   font-family: Poppins-Regular;
-  background-color: #e2e2e2;
+  background-image: url(../img/Background.png);
+  background-size: cover;
+  background-position: center;
+  /* background-color: #e2e2e2; */
   color: #666;
 }
-header {
+.container {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+#game-header {
+  margin-bottom: 100px;
+}
+#game-header h1 {
+  margin: 0;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+header,
+main {
   text-align: center;
 }
 #pageConnexion {
@@ -63,6 +82,11 @@ select {
   padding: 8px 10px;
   border-radius: 3px;
   background-color: #eeeeee;
+  font-size: 18px;
+  border: 1px solid #c9c9c9;
+}
+input[type="text"] {
+  margin-right: 20px;
 }
 form div {
   display: flex;
@@ -78,9 +102,9 @@ form div {
 }
 .btn:hover {
   transition: 0.8s;
-  background-color: transparent;
-  color: #01295f;
-  border: 2px solid #01295f;
+  background-color: #d90429;
+  /* color: #01295f;
+  border: 2px solid #01295f; */
 }
 a {
   font-size: 14px;
