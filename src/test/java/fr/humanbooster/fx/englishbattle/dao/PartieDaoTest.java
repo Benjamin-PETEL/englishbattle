@@ -31,9 +31,6 @@ class PartieDaoTest {
 	private static PartieDao partieDao = new PartieDaoImpl();
 	private static List<Partie> parties = new ArrayList<>();
 	private static JoueurDao joueurDao = new JoueurDaoImpl();
-	private static Joueur joueur = null;
-	private static VilleDao villeDao = new VilleDaoImpl();
-	private static NiveauDao niveauDao = new NiveauDaoImpl();
 	private static Ville ville = null;
 	private static Niveau niveau = null;
 	private static boolean test = false;
@@ -41,9 +38,9 @@ class PartieDaoTest {
 	@Order(1)
 	@Test
 	void testCreate() {
-
-		ville = new Ville("Beyrouth");
-		niveau = new Niveau("expert");
+		Joueur joueur = new Joueur("email777.com", "Dupont", "jean", "7171");
+		joueur.setVille(new Ville("Beyrouth"));
+		joueur.setNiveau(new Niveau("expert"));
 
 //		try {
 //			joueur = joueurDao.create(new Joueur("email.com", "Hardy", "Bilal", "125421", niveauDao.create(niveau),
@@ -102,8 +99,7 @@ class PartieDaoTest {
 
 		// On crée un nouveau joueur
 		try {
-			 joueurModifie = joueurDao.create(new Joueur("email777.com", "Dupont", "jean", "7171", niveauDao.create(niveauModifie),
-					villeDao.create(villeModifiee)));
+			 joueurModifie = joueurDao.create(new Joueur("email777.com", "Dupont", "jean", "7171"));
 		} catch (SQLException e1) {
 
 			e1.printStackTrace();
