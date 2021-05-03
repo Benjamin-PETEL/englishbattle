@@ -13,11 +13,15 @@ import fr.humanbooster.fx.englishbattle.dao.ConnexionBdd;
 import fr.humanbooster.fx.englishbattle.dao.JoueurDao;
 import fr.humanbooster.fx.englishbattle.dao.NiveauDao;
 import fr.humanbooster.fx.englishbattle.dao.Requetes;
+import fr.humanbooster.fx.englishbattle.dao.VilleDao;
 
 public class JoueurDaoImpl implements JoueurDao{
 	
 	private Connection connexion ;
 	private NiveauDao niveauDao = new NiveauDaoImpl();
+	private VilleDao villeDao = new VilleDaoImpl();
+	
+	
 	public JoueurDaoImpl() {
 		try {
 			connexion = ConnexionBdd.getConnection();
@@ -52,60 +56,39 @@ public class JoueurDaoImpl implements JoueurDao{
 	@Override
 	public Joueur findOne(Long id) throws SQLException {
 		PreparedStatement preparedStatement = connexion.prepareStatement(Requetes.JOUEUR_PAR_ID, Statement.RETURN_GENERATED_KEYS);
-		// On transforme le premier ? par l'id donné en paramètre
 		preparedStatement.setLong(1, id);
 		ResultSet rs = preparedStatement.executeQuery();
 		if (rs .next()) {
-			// On charge ces données dans un nouvel objet de type Compagnie
 			Joueur joueur = new Joueur();
-			// la donnée lue dans la colonne nom est affectée au nom
-			// de l'objet compagnie
-			joueur.setNom(rs .getString("nom"));
-			// la donnée lue dans la colonne id est affectée au nom
-			// de l'objet compagnie
 			joueur.setId(rs .getLong("id"));
-			joueur.setNom(rs .getString("prenom"));
-			joueur.setNom(rs .getString("ville"));
-			joueur.setId(rs .getLong("niveau"));
+			joueur.setNom(rs .getString("nom"));
+			joueur.setPrenom(rs .getString("prenom"));
+			joueur.setEmail(rs.getString("email"));
+			joueur.setMotDePasse(rs.getString("motDePasse"));
+			joueur.setVille(villeDao.findOne(rs.getLong("ville_id")));
+			joueur.setNiveau(niveauDao.findOne(rs.getLong("niveau_id")));
 			
 			return joueur;
 			}
 		return null;
 	}
 
+	
 	@Override
 	public List<Joueur> findAll() throws SQLException {
 		List<Joueur> joueurs = new ArrayList<>();
 		PreparedStatement ps = connexion.prepareStatement(Requetes.TOUS_LES_JOUEURS);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			Joueur joueur = new Joueur();
-			joueur.setId(rs.getLong("id"));
-			joueur.setNom(rs.getString("nom"));
-			joueur.setPrenom("prenom");
-			joueur.setNiveau(niveauDao.findOne(rs.getLong("niveau_id")));
-			joueur.setMotDePasse(rs.getString("motDePasse"));
-			joueur.setEmail(rs.getString("email"));
+			Joueur joueur = findOne(rs.getLong("id"));
 			joueurs.add(joueur);
 		}
 		return joueurs;
 	}
 
-	@Override
-	public boolean delete(Long id) throws SQLException {
-		Joueur joueurAEffacer =  findOne(id);
-		//si l'id du joueur est different de null alors on execute la requete
-		if (joueurAEffacer != null) {
-			PreparedStatement ps = connexion.prepareStatement(Requetes.SUPPRESSION_JOUEUR);
-			ps.executeUpdate();
-		}
-		
-		return false;
-	}
 
 	@Override
-	public boolean update(Long id , Joueur joueur) throws SQLException {
-		
+	public boolean update(Long id , Joueur joueur) throws SQLException {	
 		PreparedStatement ps = connexion.prepareStatement(Requetes.UPDATE_JOUEUR);
 		ps.setString(1,joueur.getEmail());
 		ps.setString(2, joueur.getMotDePasse());
@@ -120,5 +103,20 @@ public class JoueurDaoImpl implements JoueurDao{
 		return true;
 	}
 
+	
+	@Override
+	public boolean delete(Long id) throws SQLException {
+		Joueur joueurAEffacer =  findOne(id);
+		//si l'id du joueur est different de null alors on execute la requete
+		if (joueurAEffacer != null) {
+			PreparedStatement ps = connexion.prepareStatement(Requetes.SUPPRESSION_JOUEUR);
+			ps.setLong(1, id);
+			ps.executeUpdate();
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 }

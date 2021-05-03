@@ -24,7 +24,7 @@ public class Requetes {
         // Requetes des joueurs
         public static final String AJOUT_JOUEUR = "INSERT INTO joueur (email, motDePasse, nom, prenom, niveau_id, ville_id) VALUES (?,?,?,?,?,?)";
         public static final String UPDATE_JOUEUR = "UPDATE joueur SET email = ?, motDePasse = ?, nom = ?, prenom = ?, niveau_id = ?, ville_id = ? WHERE id = ?";
-        public static final String JOUEUR_PAR_ID = "SELECT id, email, motDePasse, nom, prenom, niveau_id, ville_id FROM joueur";
+        public static final String JOUEUR_PAR_ID = "SELECT id, email, motDePasse, nom, prenom, niveau_id, ville_id FROM joueur WHERE id=?";
         public static final String TOUS_LES_JOUEURS = "SELECT id, email, motDePasse, nom, prenom, niveau_id, ville_id FROM joueur";
         public static final String SUPPRESSION_JOUEUR = "DELETE FROM joueur WHERE id = ?";
 
