@@ -54,3 +54,14 @@ CREATE TABLE `Ville` (
   `nom` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
+
+INSERT INTO `ville`(nom) VALUES ('Lyon');
+INSERT INTO `ville`(nom) VALUES ('Paris');
+INSERT INTO `ville`(nom) VALUES ('Marseille');
+
+INSERT INTO `niveau`(nom) VALUES ('Débutant');
+INSERT INTO `niveau`(nom) VALUES ('Intermédiaire');
+INSERT INTO `niveau`(nom) VALUES ('Expert');
+
+
+

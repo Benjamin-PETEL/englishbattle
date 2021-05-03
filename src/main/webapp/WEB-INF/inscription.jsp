@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 	<jsp:include page="entete.jsp" />
+
     <section>
         <header>
         <img src="img/LogoEnglishBattle.png" alt="logo" width="350px">

@@ -38,7 +38,7 @@ public class JoueurDaoImpl implements JoueurDao{
 		preparedStatement.setString(2, joueur.getMotDePasse());
 		preparedStatement.setString(3, joueur.getNom());
 		preparedStatement.setString(4, joueur.getPrenom());
-		preparedStatement.setLong(5, joueur.getNiveau().getid());
+		preparedStatement.setLong(5, joueur.getNiveau().getId());
 		preparedStatement.setLong(6, joueur.getVille().getIdVille());
 		preparedStatement.executeUpdate();
 		ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -112,7 +112,7 @@ public class JoueurDaoImpl implements JoueurDao{
 		ps.setString(3, joueur.getNom());
 		ps.setString(4, joueur.getPrenom());
 		//On recupere l'id du niveau du joueur, cette id me sert à remplacer le 4eme "?"
-		ps.setLong(5,joueur.getNiveau().getid());
+		ps.setLong(5,joueur.getNiveau().getId());
 		ps.setLong(6, joueur.getVille().getIdVille());
 		ps.setLong(7, id);
 		ps.executeUpdate();

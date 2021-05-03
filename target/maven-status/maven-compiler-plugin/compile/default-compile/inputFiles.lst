@@ -1,35 +1,36 @@
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\QuestionService.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\VilleDao.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\exceptions\AucunVerbeException.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\VilleService.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\servlets\ConnexionServlet.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\PartieDaoImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\NiveauDao.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\VilleDaoImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\VerbeServiceImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Niveau.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\PartieDao.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\servlets\IndexServlet.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Ville.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\JoueurService.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\NiveauService.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\ConnexionBdd.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\JoueurServiceImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\Requetes.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\VerbeService.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\JoueurDao.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Partie.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\VerbeDao.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Verbe.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Joueur.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\VerbeDaoImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Question.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\QuestionServiceImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\util\ComparateurDeJoueurSurScore.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\VilleServiceImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\NiveauServiceImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\PartieService.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\JoueurDaoImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\NiveauDaoImpl.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\QuestionDao.java
-C:\Users\HB\Google Drive\PROGRAMMATION\Java\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\QuestionDaoImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\NiveauDaoImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\servlets\ConnexionServlet.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\Requetes.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\QuestionDao.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\VerbeService.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\VerbeDao.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\VerbeServiceImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\JoueurService.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\PartieDao.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\PartieDaoImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\NiveauDao.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\exceptions\AucunVerbeException.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\VilleServiceImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Niveau.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\servlets\IndexServlet.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Ville.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\QuestionServiceImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Partie.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\QuestionService.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\NiveauServiceImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\VilleService.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\NiveauService.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\util\ComparateurDeJoueurSurScore.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Question.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\servlets\InscriptionServlet.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\PartieService.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Verbe.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\VilleDao.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\JoueurDaoImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\ConnexionBdd.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\JoueurDao.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\VerbeDaoImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\VilleDaoImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\service\impl\JoueurServiceImpl.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\business\Joueur.java
+C:\Users\HB\Dropbox\Bilal\eclipse-workspace\English Battle Ben\englishbattle\src\main\java\fr\humanbooster\fx\englishbattle\dao\impl\QuestionDaoImpl.java

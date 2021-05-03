@@ -15,7 +15,6 @@ import fr.humanbooster.fx.englishbattle.business.Ville;
 import fr.humanbooster.fx.englishbattle.service.JoueurService;
 import fr.humanbooster.fx.englishbattle.service.NiveauService;
 import fr.humanbooster.fx.englishbattle.service.VilleService;
-import fr.humanbooster.fx.englishbattle.service.impl.JoueurServiceImpl;
 import fr.humanbooster.fx.englishbattle.service.impl.NiveauServiceImpl;
 import fr.humanbooster.fx.englishbattle.service.impl.VilleServiceImpl;
 
@@ -79,8 +78,9 @@ public class InscriptionServlet extends HttpServlet {
 		request.setAttribute("niveau", niveau.getNom());
 		request.setAttribute("mdp", mdp);
 		request.getRequestDispatcher("WEB-INF/merciInscription.jsp").include(request, response);
-		
+
 		joueurService.ajouterJoueur(email, nom, prenom, mdp, niveau.getid(), ville.getIdVille());
+
 	}
 
 }
