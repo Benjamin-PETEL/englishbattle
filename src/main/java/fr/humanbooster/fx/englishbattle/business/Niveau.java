@@ -12,6 +12,7 @@ public class Niveau {
         this.nom = nom;
     }
 
+
 	public Long getId() {
 		return id;
 	}
@@ -32,5 +33,6 @@ public class Niveau {
 	public String toString() {
 		return "Niveau [id=" + id + ", nom=" + nom + "]";
 	}
+
 
 }
