@@ -6,10 +6,11 @@ import fr.humanbooster.fx.englishbattle.business.Verbe;
 
 public interface VerbeService {
 	
-        Verbe ajouterVerbe(String baseVerbale, String preterit, String participePasse, String traduction);
+    Verbe ajouterVerbe(String baseVerbale, String preterit, String participePasse, String traduction);
 	Verbe ajouterVerbe(Verbe verbe);
 	List<Verbe> recupererVerbes();
 	Verbe recupererVerbe(Long id);
 	Verbe recupererAleatoire();
 	boolean supprimerVerbe(Long id);
+	boolean importerVerbes();
 }

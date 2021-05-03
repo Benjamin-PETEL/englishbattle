@@ -1,8 +1,8 @@
 package fr.humanbooster.fx.englishbattle.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.SQLException;
@@ -20,71 +20,76 @@ import fr.humanbooster.fx.englishbattle.dao.impl.VilleDaoImpl;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class VilleDaoTest {
 
+	
+	// ----------------------------- Attributs ----------------------------------
 	private static VilleDao villeDao = new VilleDaoImpl();
-	private static Ville ville = null;
+	private static Ville villeIn = null;
+	private static Ville villeOut = null;
 	private static List<Ville> villes = new ArrayList<>();
 
+	
+	
+	// -------------------------------- Tests -----------------------------------
 	@Order(1)
 	@Test
 	void testCreate() {
 		String nom = "Marseille";
-
 		try {
-			ville = villeDao.create(new Ville(nom));
+			villeIn = villeDao.create(new Ville(nom));
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
-		assertNotNull(ville);
-		assertNotNull(ville.getIdVille());
-		assertEquals(ville.getNom(), nom);
-
+		// Tests
+		assertNotNull(villeIn);
+		assertNotNull(villeIn.getIdVille());
+		assertEquals(villeIn.getNom(), nom);
 	}
+	
 
 	@Order(2)
 	@Test
 	void testFindOne() {
-
-		Ville villeOutPut = null;
 		try {
-			villeOutPut = villeDao.findOne(ville.getIdVille());
+			villeOut = villeDao.findOne(villeIn.getIdVille());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		assertNotNull(villeOutPut);
-		assertNotNull(villeOutPut.getIdVille());
-		assertNotNull(villeOutPut.getNom());
-
-		assertEquals(villeOutPut, ville);
+		// Tests
+		assertNotNull(villeOut);
+		assertNotNull(villeOut.getIdVille());
+		assertNotNull(villeOut.getNom());
+		assertEquals(villeOut, villeIn);
 	}
 
+	
 	@Order(3)
 	@Test
 	void testFindAll() {
 		try {
 			villes = villeDao.findAll();
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
+		// Tests
 		assertNotNull(villes);
 		assertTrue(villes.size() > 0);
+		assertTrue(villes.contains(villeIn));
 	}
 
+	
 	@Order(4)
 	@Test
 	void testDelete() {
-		
 		boolean villeEfface = false;
 		try {
-			villeEfface = villeDao.delete(ville.getIdVille());
+			villeEfface = villeDao.delete(villeIn.getIdVille());
+			villes = villeDao.findAll();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		// Tests
 		assertTrue(villeEfface);
+		assertFalse(villes.contains(villeIn));
 
 	}
 
