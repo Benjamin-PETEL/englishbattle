@@ -1,7 +1,8 @@
 package fr.humanbooster.fx.englishbattle.servlets;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,45 +10,72 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.humanbooster.fx.englishbattle.business.Joueur;
-import fr.humanbooster.fx.englishbattle.service.JoueurService;
+import fr.humanbooster.fx.englishbattle.business.Niveau;
+import fr.humanbooster.fx.englishbattle.business.Ville;
 import fr.humanbooster.fx.englishbattle.service.NiveauService;
 import fr.humanbooster.fx.englishbattle.service.VilleService;
-import fr.humanbooster.fx.englishbattle.service.impl.JoueurServiceImpl;
 import fr.humanbooster.fx.englishbattle.service.impl.NiveauServiceImpl;
 import fr.humanbooster.fx.englishbattle.service.impl.VilleServiceImpl;
 
 /**
- * Servlet implementation class InscriptionServlet
+ * Servlet implementation class Inscription
  */
-@WebServlet(urlPatterns = "/inscription", loadOnStartup=1)
+@WebServlet("/inscription")
 public class InscriptionServlet extends HttpServlet {
-	
 	private static final long serialVersionUID = 1L;
-    
-	private JoueurService joueurService = new JoueurServiceImpl();
-	private NiveauService niveauService = new NiveauServiceImpl();
-	private VilleService villeService = new VilleServiceImpl();
-
+	
+	private static VilleService villeService = new VilleServiceImpl();
+	private static NiveauService niveauService = new NiveauServiceImpl();
+	private static List<Ville> villes = new ArrayList<>();
+	private static List<Niveau> niveaux = new ArrayList<>();   
     /**
      * @see HttpServlet#HttpServlet()
      */
     public InscriptionServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		villes = villeService.recupererVilles();
+		niveaux = niveauService.recupererNiveaux();
+		
+		request.setAttribute("villes", villes);
+		request.setAttribute("niveaux", niveaux);
+		
+		request.getRequestDispatcher("WEB-INF/inscription.jsp").include(request, response);
+		
+		
+		
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("EMAIL");
+		
+		
+		
+		
 		String nom = request.getParameter("NOM");
 		String prenom = request.getParameter("PRENOM");
-		String motDePasse = request.getParameter("MOT_DE_PASSE");
-		Long idNiveau = Long.parseLong(request.getParameter("ID_NIVEAU"));
-		Long idVille = Long.parseLong(request.getParameter("ID_VILLE"));
-		joueurService.ajouterJoueur(email, nom, prenom, motDePasse, idNiveau, idVille);
-		response.sendRedirect("index");
+		String email = request.getParameter("EMAIL");
+		
+		Ville ville = villeService.recupererVille( Long.valueOf(request.getParameter("ID_VILLE")));
+		Niveau niveau = niveauService.recupererNiveau(Long.valueOf(request.getParameter("ID_NIVEAU")));
+		
+		String mdp = request.getParameter("MDP");
+		request.setAttribute("nom", nom);
+		request.setAttribute("prenom", prenom);
+		request.setAttribute("email", email);
+		request.setAttribute("ville", ville.getNom());
+		request.setAttribute("niveau", niveau.getNom());
+		request.setAttribute("mdp", mdp);
+		request.getRequestDispatcher("WEB-INF/merciInscription.jsp").include(request, response);
 	}
 
 }
