@@ -65,4 +65,15 @@ public class QuestionServiceImpl implements QuestionService {
 		}
 	}
 
+	@Override
+	public boolean verifierReponse(Question question) {
+		if(!question.getVerbe().getPreterit().equals(question.getReponsePreterit())) {
+			return false;
+		}
+		if(!question.getVerbe().getParticipePasse().equals(question.getReponseParticipePasse())) {
+			return false;
+		}
+		return true;
+	}
+
 }
