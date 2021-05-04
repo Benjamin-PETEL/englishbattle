@@ -24,4 +24,12 @@ public interface QuestionService {
 	 * @return true si la question est mise à jour / false sinon
 	 */
 	boolean mettreAJourQuestion(Long id, String reponsePreterit, String reponseParticipePasse);
+	
+	
+	/**
+	 * 
+	 * @param question: un question comprenant un verbe et les réponse prétérit et participe
+	 * @return true si le prétérit et le participe correspondent au verbe
+	 */
+	boolean verifierReponse(Question question);
 }
