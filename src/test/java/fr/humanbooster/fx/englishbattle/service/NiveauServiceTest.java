@@ -18,43 +18,46 @@ import fr.humanbooster.fx.englishbattle.service.impl.NiveauServiceImpl;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class NiveauServiceTest {
+	
+	// ----------------------------- Attributs ----------------------------------
 	private NiveauService niveauService = new NiveauServiceImpl();
-	private static Niveau niveau = null;
+	private static Niveau niveauIn = null;
+	private static Niveau niveauOut = null;
+	private static List<Niveau> niveaux = null;
 
 	
+	// -------------------------------- Tests -----------------------------------
 	@Test
 	@Order(1)
 	void testAjouterNiveau() {
-		String nom = "";
-		niveau = niveauService.ajouterNiveau(nom);
-		assertNotNull(niveau);
-		assertNotNull(niveau.getId());
-		assertEquals(niveau.getNom(), nom);
+		String nom = "Debutant";
+		niveauIn = niveauService.ajouterNiveau(nom);
+		// Tests
+		assertNotNull(niveauIn);
+		assertNotNull(niveauIn.getId());
+		assertEquals(niveauIn.getNom(), nom);
 	}
 
+	
 	@Test
 	@Order(2)
 	void testRecupererNiveau() {
-		Niveau niveau1 = null;
-
-		niveau1 = niveauService.recupererNiveau(niveau.getId());
-		assertNotNull(niveau1);
-		assertNotNull(niveau1.getId());
-		assertEquals(niveau1.getId(), niveau.getId());
-		assertEquals(niveau1.getNom(), niveau.getNom());
+		niveauOut = null;
+		niveauOut = niveauService.recupererNiveau(niveauIn.getId());
+		// Tests
+		assertNotNull(niveauOut);
+		assertEquals(niveauIn, niveauOut);
 	}
 
+	
 	@Test
 	@Order(3)
 	void testRecupererNiveaux() {
-		List<Niveau> niveaux = niveauService.recupererNiveaux();
+		niveaux = niveauService.recupererNiveaux();
 		assertFalse(niveaux.isEmpty());
-		assertTrue(niveaux.contains(niveau));
+		// Tests
+		assertTrue(niveaux.contains(niveauIn));
+	}
 
-		for (Niveau niveau : niveaux) {
-			assertNotNull(niveau.getId());
-			assertTrue(niveau.getId() > 0);
-			assertNotNull(niveau.getNom());
-		}
-}
+
 }

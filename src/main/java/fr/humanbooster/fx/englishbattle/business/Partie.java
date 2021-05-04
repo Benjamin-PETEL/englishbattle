@@ -5,17 +5,21 @@ import java.util.List;
 
 public class Partie implements Comparable<Partie>{
 	
-	
+	// ----------------------------- Attributs ----------------------------------
 	private Long id;
 	private Joueur joueur;
 	private List<Question> questions = new ArrayList<>();
 
 	
 	
+	// ----------------------------- Constructeurs ------------------------------
 	public Partie(Joueur joueur) {
 		this.joueur = joueur;
 	}
 
+	
+	
+	// ----------------------------- Set - Get ----------------------------------
 	public Joueur getJoueur() {
 		return joueur;
 	}
@@ -32,6 +36,17 @@ public class Partie implements Comparable<Partie>{
 		this.questions = questions;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	
+	// ------------------------------- Methode ----------------------------------
 	public Question getDerniereQuestion() {
 		if (questions.isEmpty()) return null;
 		return questions.get(questions.size()-1);
@@ -47,13 +62,6 @@ public class Partie implements Comparable<Partie>{
 		return questions.size()-1;
 	}
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 	public void addQuestion(Question question) {
 		questions.add(question);
@@ -61,7 +69,7 @@ public class Partie implements Comparable<Partie>{
 	
 	
 	
-	
+	// ----------------------------- hashCode -----------------------------------
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,6 +80,9 @@ public class Partie implements Comparable<Partie>{
 		return result;
 	}
 
+	
+	
+	// ------------------------------ equals ------------------------------------
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -108,6 +119,9 @@ public class Partie implements Comparable<Partie>{
 		else return -1;
 	}
 	
+	
+	
+	// ----------------------------- toString -----------------------------------
 	@Override
 	public String toString() {
 		return "Partie [joueur=" + joueur + ", questions=" + questions + "]";

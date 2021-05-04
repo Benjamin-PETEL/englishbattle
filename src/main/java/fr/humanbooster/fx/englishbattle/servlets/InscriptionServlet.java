@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.humanbooster.fx.englishbattle.business.Joueur;
 import fr.humanbooster.fx.englishbattle.business.Niveau;
 import fr.humanbooster.fx.englishbattle.business.Ville;
 import fr.humanbooster.fx.englishbattle.service.JoueurService;
@@ -39,48 +40,34 @@ public class InscriptionServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		villes = villeService.recupererVilles();
 		niveaux = niveauService.recupererNiveaux();
-		
 		request.setAttribute("villes", villes);
 		request.setAttribute("niveaux", niveaux);
-		
 		request.getRequestDispatcher("WEB-INF/inscription.jsp").include(request, response);
-		
-		
-		
-		
 	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-		
+
 		String nom = request.getParameter("NOM");
 		String prenom = request.getParameter("PRENOM");
 		String email = request.getParameter("EMAIL");
-		
 		Ville ville = villeService.recupererVille( Long.valueOf(request.getParameter("ID_VILLE")));
 		Niveau niveau = niveauService.recupererNiveau(Long.valueOf(request.getParameter("ID_NIVEAU")));
-		
 		String mdp = request.getParameter("MDP");
-		request.setAttribute("nom", nom);
-		request.setAttribute("prenom", prenom);
-		request.setAttribute("email", email);
-		request.setAttribute("ville", ville.getNom());
-		request.setAttribute("niveau", niveau.getNom());
-		request.setAttribute("mdp", mdp);
+		Joueur joueur = joueurService.ajouterJoueur(email, nom, prenom, mdp, niveau.getId(), ville.getIdVille());
+		request.setAttribute("joueur", joueur);
 		request.getRequestDispatcher("WEB-INF/merciInscription.jsp").include(request, response);
-
-		joueurService.ajouterJoueur(email, nom, prenom, mdp, niveau.getId(), ville.getIdVille());
+		
 
 	}
 

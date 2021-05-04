@@ -1,5 +1,6 @@
 package fr.humanbooster.fx.englishbattle.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +20,8 @@ import fr.humanbooster.fx.englishbattle.service.impl.VerbeServiceImpl;
 class VerbeServiceTest {
 
 	private static VerbeService verbeService = new VerbeServiceImpl();
-	private static Verbe verbe = null;
+	private static Verbe verbeIn = null;
+	private static Verbe verbeOut = null;
 	private static List<Verbe> verbes = null;
 	
 	@Test
@@ -30,53 +32,64 @@ class VerbeServiceTest {
 		String participePasse = "participePasse";
 		String preterit = "preterit";
 		String traduction = "traduction";
-		Verbe verbe2 = new Verbe(baseVerbale, preterit, participePasse, traduction);
-		verbe = verbeService.ajouterVerbe(verbe2);
-		assertNotNull(verbe);
-		assertNotNull(verbe.getId());
-		assertTrue(verbe.equals(verbe2));
+		Verbe verbe = new Verbe(baseVerbale, preterit, participePasse, traduction);
+		verbeIn = verbeService.ajouterVerbe(verbe);
+		// Tests
+		assertNotNull(verbeIn);
+		assertNotNull(verbeIn.getId());
+		assertTrue(verbeIn.getBaseVerbale().equals(verbe.getBaseVerbale()));
+		assertTrue(verbeIn.getParticipePasse().equals(verbe.getParticipePasse()));
+		assertTrue(verbeIn.getPreterit().equals(verbe.getPreterit()));
+		assertTrue(verbeIn.getTraduction().equals(verbe.getTraduction()));
 	}
 
+	
 	@Test
 	@Order(2)
 	@DisplayName("teste la recupération d'un verbe")
 	void testRecupererVerbe() {
-		Verbe verbe2 = null;
-		verbe2 = verbeService.recupererVerbe(verbe.getId());
-		assertNotNull(verbe2.getId());
-		assertTrue(verbe2.getId() > 0);
+		verbeOut = verbeService.recupererVerbe(verbeIn.getId());
+		// Tests
+		assertNotNull(verbeOut);
+		assertEquals(verbeIn, verbeOut);
 	}
+	
 
 	@Test
 	@Order(3)
 	@DisplayName("teste la récupération d'une liste de verbes")
 	void testRecupererVerbes() {
 		verbes = verbeService.recupererVerbes();
+		// Tests
 		assertFalse(verbes.isEmpty());
-		
-		for (Verbe verbe : verbes) {
-			assertNotNull(verbe.getId());
-			assertTrue(verbe.getId() > 0);
-		}
+		assertTrue(verbes.contains(verbeIn));
 	}
 	
 	@Test
 	@Order(4)
 	@DisplayName("teste la récupération d'un verbe aleatoire")
 	void testRecupererVerbeAleatoire() {
-		Verbe verbe2 = null;
-		verbe2 = verbeService.recupererAleatoire();
-		assertNotNull(verbe2);
-		assertNotNull(verbe2.getId());
+		verbeOut = null;
+		verbeOut = verbeService.recupererAleatoire();
+		// Tests
+		assertNotNull(verbeOut);
+		assertNotNull(verbeOut.getId());
+		assertNotNull(verbeOut.getBaseVerbale());
+		assertNotNull(verbeOut.getParticipePasse());
+		assertNotNull(verbeOut.getPreterit());
+		assertNotNull(verbeOut.getTraduction());
 	}
 	
 	@Test
 	@Order(5)
 	@DisplayName("teste la suppression d'un verbe par son Id")
 	void testDeleteVerbe() {
-		boolean ReleveaEteEfface = false;
-		ReleveaEteEfface = verbeService.supprimerVerbe(verbe.getId());
-		assertTrue(ReleveaEteEfface);
+		boolean verbeIsDeleted = false;
+		verbeIsDeleted = verbeService.supprimerVerbe(verbeIn.getId());
+		verbes = verbeService.recupererVerbes();
+		// Tests
+		assertTrue(verbeIsDeleted);
+		assertFalse(verbes.contains(verbeIn));
 	}
 	
 	@Test

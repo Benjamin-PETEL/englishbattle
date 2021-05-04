@@ -18,56 +18,63 @@ import fr.humanbooster.fx.englishbattle.service.impl.VilleServiceImpl;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class VilleServiceTest {
 
+	// ----------------------------- Attributs ----------------------------------
 	private static VilleService villeService = new VilleServiceImpl();
-	private static Ville ville = null;
+	private static Ville villeIn = null;
+	private static Ville villeOut = null;
+	private static List<Ville> villes = null;
 
+	
+	// -------------------------------- Tests -----------------------------------
 	@Order(1)
 	@Test
 	void testAjouterVille() {
 		String nom = "Marseille";
-
-		ville = villeService.ajouterVille(nom);
-		assertNotNull(ville);
-		assertNotNull(ville.getIdVille());
-		assertEquals(ville.getNom(), nom);
+		villeIn = villeService.ajouterVille(nom);
+		// Tests
+		assertNotNull(villeIn);
+		assertNotNull(villeIn.getIdVille());
+		assertEquals(villeIn.getNom(), nom);
 
 	}
 
+	
+	
 	@Order(2)
 	@Test
 	void testRecupererVille() {
-		Ville ville2 = null;
-
-		ville2 = villeService.recupererVille(ville.getIdVille());
-		assertNotNull(ville2);
-		assertNotNull(ville2.getIdVille());
-		assertNotNull(ville2.getNom());
-		assertEquals(ville2, ville);
+		villeOut = null;
+		villeOut = villeService.recupererVille(villeIn.getIdVille());
+		// Tests
+		assertNotNull(villeOut);
+		assertNotNull(villeOut.getIdVille());
+		assertNotNull(villeOut.getNom());
+		assertEquals(villeOut, villeIn);
 
 	}
 
+	
+	
 	@Order(3)
 	@Test
 	void testRecupererVilles() {
-		List<Ville> villes = villeService.recupererVilles();
+		villes = villeService.recupererVilles();
+		// Tests
 		assertFalse(villes.isEmpty());
-
-		for (Ville ville : villes) {
-			assertNotNull(ville.getIdVille());
-			assertTrue(ville.getIdVille() > 0);
-
-			assertNotNull(ville.getNom());
-		}
+		assertTrue(villes.contains(villeIn));
 	}
 
+	
+	
 	@Order(4)
 	@Test
 	void testSupprimerVille() {
 		boolean villeEfface = false;
-
-		villeEfface = villeService.supprimerVille(ville.getIdVille());
-
+		villeEfface = villeService.supprimerVille(villeIn.getIdVille());
+		villes = villeService.recupererVilles();
+		// Tests
 		assertTrue(villeEfface);
+		assertFalse(villes.contains(villeIn));
 	}
 
 }

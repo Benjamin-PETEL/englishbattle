@@ -26,7 +26,8 @@ import fr.humanbooster.fx.englishbattle.dao.impl.VilleDaoImpl;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 class PartieDaoTest {
-
+	
+	// ----------------------------- Attributs ----------------------------------
 	private static Partie partie = null;
 	private static PartieDao partieDao = new PartieDaoImpl();
 	private static List<Partie> parties = new ArrayList<>();
@@ -35,6 +36,8 @@ class PartieDaoTest {
 	private static Niveau niveau = null;
 	private static boolean test = false;
 
+	
+	// -------------------------------- Tests -----------------------------------
 	@Order(1)
 	@Test
 	void testCreate() {
