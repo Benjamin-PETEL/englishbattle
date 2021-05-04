@@ -10,9 +10,9 @@
     <title>English Battle</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="img/icon_EnglishBattle.ico" />
 </head>
 <body>
-	<jsp:include page="entete.jsp" />
     <h1>Bienvenue sur English Battle !</h1>
     <form action="connexion" method="POST" >
         <div>
