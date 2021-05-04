@@ -5,12 +5,13 @@ import java.util.List;
 
 public class Partie implements Comparable<Partie>{
 	
+	
 	private Long id;
-	
 	private Joueur joueur;
-	
 	private List<Question> questions = new ArrayList<>();
 
+	
+	
 	public Partie(Joueur joueur) {
 		this.joueur = joueur;
 	}
@@ -58,6 +59,46 @@ public class Partie implements Comparable<Partie>{
 		questions.add(question);
 	}
 	
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((joueur == null) ? 0 : joueur.hashCode());
+		result = prime * result + ((questions == null) ? 0 : questions.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Partie other = (Partie) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (joueur == null) {
+			if (other.joueur != null)
+				return false;
+		} else if (!joueur.equals(other.joueur))
+			return false;
+		if (questions == null) {
+			if (other.questions != null)
+				return false;
+		} else if (!questions.equals(other.questions))
+			return false;
+		return true;
+	}
+
 	@Override
 	public int compareTo(Partie autrePartie) {
 		if (questions.size()==autrePartie.questions.size()) {
