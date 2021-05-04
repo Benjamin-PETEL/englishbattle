@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -25,6 +27,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	private Connection connection;
 	private static VerbeDao verbeDao = new VerbeDaoImpl();
 	private static PartieDao partieDao = new PartieDaoImpl();
+	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	
 	// ----------------------------- Constructeurs ------------------------------
@@ -38,6 +41,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	
 	@Override
 	public Question create(Question question) throws SQLException {
+		// voir methode initialiseStatement en bas de page
 		PreparedStatement ps = initialiseStatement(Requetes.AJOUT_QUESTION, question);
 		ps.executeUpdate();
 		ResultSet rs = ps.getGeneratedKeys();
@@ -48,7 +52,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public List<Question> findAll() throws SQLException {
+	public List<Question> findAll() throws SQLException, ParseException {
         List<Question> questions = new ArrayList<>();
         PreparedStatement ps = connection.prepareStatement(Requetes.TOUS_LES_QUESTIONS);
         ResultSet rs = ps.executeQuery();
@@ -59,7 +63,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public Question findOne(Long id) throws SQLException {
+	public Question findOne(Long id) throws SQLException, ParseException {
 		Question question = null;
         PreparedStatement ps = connection.prepareStatement(Requetes.QUESTION_PAR_ID);
         ps.setLong(1, id);
@@ -69,11 +73,8 @@ public class QuestionDaoImpl implements QuestionDao {
         	Verbe verbe = verbeDao.findOne(rs.getLong("verbe_id"));
             question = new Question(partie, verbe);
             question.setId(id);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(rs.getDate("dateEnvoi"));
-            question.setDateEnvoi(calendar.getTime());
-            calendar.setTime(rs.getDate("dateReponse"));
-            question.setDateReponse(calendar.getTime());
+            question.setDateEnvoi(simpleDateFormat.parse(rs.getString("dateEnvoi")));
+            question.setDateReponse(simpleDateFormat.parse(rs.getString("dateReponse")));
             question.setReponsePreterit(rs.getString("reponsePreterit"));
             question.setReponseParticipePasse(rs.getString("reponseParticipePasse"));
         }
@@ -116,8 +117,8 @@ public class QuestionDaoImpl implements QuestionDao {
 		ps.setLong(2, question.getVerbe().getId());
 		ps.setString(3, question.getReponsePreterit());
 		ps.setString(4, question.getReponseParticipePasse());
-		ps.setDate(5, dateEnvoie);
-		ps.setDate(6, dateReponse);
+		ps.setString(5, simpleDateFormat.format(dateReponse));
+		ps.setString(6, simpleDateFormat.format(dateEnvoie));
 		return ps;
 	}
 	

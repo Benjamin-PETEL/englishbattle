@@ -166,7 +166,7 @@ public class Question {
 	// ----------------------------- toString -----------------------------------
 	@Override
 	public String toString() {
-		return "Question [verbe=" + verbe + ", reponsePreterit=" + reponsePreterit
+		return "Question [id=" + id + "verbe=" + verbe + ", reponsePreterit=" + reponsePreterit
 				+ ", reponseParticipePasse=" + reponseParticipePasse + ", dateEnvoi=" + dateEnvoi + ", dateReponse="
 				+ dateReponse + "]";
 	}

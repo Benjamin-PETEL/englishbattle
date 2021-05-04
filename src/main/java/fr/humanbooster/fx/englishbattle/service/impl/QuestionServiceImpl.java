@@ -1,6 +1,7 @@
 package fr.humanbooster.fx.englishbattle.service.impl;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import fr.humanbooster.fx.englishbattle.business.Partie;
@@ -25,7 +26,7 @@ public class QuestionServiceImpl implements QuestionService {
 	public List<Question> recupererQuestions() {
 		try {
 			return questionDao.findAll();
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			System.out.println(e);
 			return null;
 		}
@@ -35,7 +36,7 @@ public class QuestionServiceImpl implements QuestionService {
 	public Question recupererQuestion(Long id) {
 		try {
 			return questionDao.findOne(id);
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			System.out.println(e);
 			return null;
 		}
@@ -59,7 +60,7 @@ public class QuestionServiceImpl implements QuestionService {
 			question.setReponseParticipePasse(reponseParticipePasse);
 			questionDao.update(id, question);
 			return true;
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			System.out.println(e);
 			return false;
 		}
