@@ -16,5 +16,5 @@ public interface PartieService {
 	
 	public boolean estPresent(Partie partie, Verbe verbe);
 	
-	
+	public boolean supprimerPartie(Long id);
 }
