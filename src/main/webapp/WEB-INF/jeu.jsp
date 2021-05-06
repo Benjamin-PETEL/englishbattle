@@ -16,6 +16,17 @@
 
 <body>
 	<jsp:include page="entete.jsp" />
-	<div>bienvenue ${joueur.email}</div>
+	<main>
+		<form action="jeu" method="post">
+			<h1>Question ${compteur}</h1>
+			<p>${verbe.baseVerbale}</p>
+			<input type="text" id="preterit" name="PRETERIT" placeHolder="preterit">
+			<br>
+			<input type="text" id="participePasse" name="PARTICIPEPASSE" placeHolder="participePasse">
+			<br>
+			<input type="submit" value="Valider" class="btn">
+		</form>
+	</main>
+	
 </body>
 </html>

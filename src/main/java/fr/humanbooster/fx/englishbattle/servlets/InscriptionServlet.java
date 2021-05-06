@@ -65,7 +65,7 @@ public class InscriptionServlet extends HttpServlet {
 		Niveau niveau = niveauService.recupererNiveau(Long.valueOf(request.getParameter("ID_NIVEAU")));
 		String mdp = request.getParameter("MDP");
 		Joueur joueur = joueurService.ajouterJoueur(email, nom, prenom, mdp, niveau.getId(), ville.getIdVille());
-		request.setAttribute("joueur", joueur);
+		request.getSession().setAttribute("joueur", joueur);
 		request.getRequestDispatcher("WEB-INF/merciInscription.jsp").include(request, response);
 		
 

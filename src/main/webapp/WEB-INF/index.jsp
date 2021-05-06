@@ -18,7 +18,7 @@
 <body>
 	<main>
 	    <h1>Bienvenue sur English Battle !</h1>
-	    <form action="connexion" method="POST" >
+	    <form action="connexion" method="post" >
 	        <div>
 	            <label for="email">Email</label>
 	            <input name ="email" type="email">

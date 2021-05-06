@@ -44,7 +44,7 @@ public class ConnexionServlet extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/erreur.jsp").forward(request, response);
 		} else {
 			request.getSession().setAttribute("joueur", joueur);
-			request.getRequestDispatcher("WEB-INF/jeu.jsp").forward(request, response);
+			request.getRequestDispatcher("verbe").forward(request, response);
 		}
 	}
 
