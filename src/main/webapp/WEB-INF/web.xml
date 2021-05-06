@@ -8,4 +8,19 @@
     <error-code>500</error-code>
     <location>/erreur500.jsp</location>
   </error-page>
+  
+<!--   permet de mettre fin à la session au bout d'une minute -->
+  	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+	
+<!-- 	permet d'encoder les pages au bon format (pour eviter les problèmes d'accents) -->
+  	<filter>
+		<filter-name>EncodageFilter</filter-name>
+		<filter-class>fr.humanbooster.fx.englishbattle.filters.EncodageFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodageFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

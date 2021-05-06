@@ -25,7 +25,7 @@
 		<div>Email : ${joueur.email}  </div>
 		<div>Ville : ${joueur.ville.nom}  </div>
 		<div>Nom : ${joueur.niveau.nom}  </div>
-		<form action="MerciInscription" method="post">
+		<form action="jeu" method="post">
 			<button class="btn" type="submit">Jouer</button>
 		</form>
 	</main>

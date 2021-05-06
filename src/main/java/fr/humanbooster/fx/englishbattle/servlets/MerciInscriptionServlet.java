@@ -33,10 +33,10 @@ public class MerciInscriptionServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Joueur joueur = (Joueur) request.getSession().getAttribute("joueur");
-		request.getSession();
-		request.getRequestDispatcher("verbe").include(request, response);
-	}
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+////		Joueur joueur = (Joueur) request.getSession().getAttribute("joueur");
+//		request.getSession();
+//		request.getRequestDispatcher("verbe").include(request, response);
+//	}
 
 }

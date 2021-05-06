@@ -20,23 +20,14 @@ public class IndexServlet extends HttpServlet {
      */
     public IndexServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
+    /**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("WEB-INF/index.jsp").include(request, response);
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO ajouter le hall of fame dans request
+		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 	}
 
 }
