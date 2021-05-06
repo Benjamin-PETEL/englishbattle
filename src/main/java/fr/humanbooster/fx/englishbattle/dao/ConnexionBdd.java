@@ -13,4 +13,5 @@ public class ConnexionBdd {
 				"jdbc:mysql://localhost:3306/englishbattle?verifyServerCertificate=false&useSSL=true", "root", "");
 		return connection;
 	}
+	
 }

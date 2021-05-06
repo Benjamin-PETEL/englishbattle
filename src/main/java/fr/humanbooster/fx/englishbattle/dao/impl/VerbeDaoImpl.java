@@ -13,13 +13,13 @@ import fr.humanbooster.fx.englishbattle.dao.ConnexionBdd;
 import fr.humanbooster.fx.englishbattle.dao.Requetes;
 import fr.humanbooster.fx.englishbattle.dao.VerbeDao;
 
-public class VerbeDaoImpl implements VerbeDao {
+public class VerbeDaoImpl implements VerbeDao, AutoCloseable{
 
-	private Connection connection;
+	private Connection connexion;
 
 	public VerbeDaoImpl() {
 		try {
-			connection = ConnexionBdd.getConnection();
+			connexion = ConnexionBdd.getConnection();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -27,7 +27,7 @@ public class VerbeDaoImpl implements VerbeDao {
 	
 	@Override
 	public Verbe create(Verbe verbe) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(Requetes.AJOUT_VERBE, Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.AJOUT_VERBE, Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, verbe.getBaseVerbale());
 		ps.setString(2, verbe.getParticipePasse());
 		ps.setString(3, verbe.getPreterit());
@@ -44,7 +44,7 @@ public class VerbeDaoImpl implements VerbeDao {
 	@Override
 	public List<Verbe> findAll() throws SQLException {
 		List<Verbe> verbes = new ArrayList<>();
-		PreparedStatement ps = connection.prepareStatement(Requetes.TOUS_LES_VERBES);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.TOUS_LES_VERBES);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			Verbe verbe = new Verbe(rs.getString("baseVerbale"), rs.getString("preterit"), rs.getString("participePasse"), rs.getString("traduction"));
@@ -57,7 +57,7 @@ public class VerbeDaoImpl implements VerbeDao {
 	@Override
 	public Verbe findOne(Long id) throws SQLException {
 		Verbe Verbe2 = null;
-		PreparedStatement ps = connection.prepareStatement(Requetes.VERBE_PAR_ID);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.VERBE_PAR_ID);
 		ps.setLong(1, id);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
@@ -70,7 +70,7 @@ public class VerbeDaoImpl implements VerbeDao {
 	@Override
 	public Verbe findAleatoire() throws SQLException {
 		Verbe Verbe2 = null;
-		PreparedStatement ps = connection.prepareStatement(Requetes.VERBE_ALEATOIRE);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.VERBE_ALEATOIRE);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
 			Verbe2 = new Verbe(rs.getString("baseVerbale"), rs.getString("preterit"), rs.getString("participePasse"), rs.getString("traduction"));
@@ -85,10 +85,15 @@ public class VerbeDaoImpl implements VerbeDao {
 		if (verbe==null) {
 			return false;
 		}
-		PreparedStatement ps = connection.prepareStatement(Requetes.SUPPRESSION_VERBE);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.SUPPRESSION_VERBE);
 		ps.setLong(1, id);
 		ps.executeUpdate();
 		return true;
+	}
+
+	@Override
+	public void close() throws Exception {
+		connexion.close();
 	}
 
 }

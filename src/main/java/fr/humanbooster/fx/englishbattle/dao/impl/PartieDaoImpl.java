@@ -15,7 +15,7 @@ import fr.humanbooster.fx.englishbattle.dao.JoueurDao;
 import fr.humanbooster.fx.englishbattle.dao.PartieDao;
 import fr.humanbooster.fx.englishbattle.dao.Requetes;
 
-public class PartieDaoImpl implements PartieDao {
+public class PartieDaoImpl implements PartieDao , AutoCloseable{
 
 	private Connection connexion;
 	private static JoueurDao joueurDao;
@@ -100,6 +100,11 @@ public class PartieDaoImpl implements PartieDao {
 		ps.executeUpdate();
 
 		return true;
+	}
+
+	@Override
+	public void close() throws Exception {
+		connexion.close();
 	}
 
 }

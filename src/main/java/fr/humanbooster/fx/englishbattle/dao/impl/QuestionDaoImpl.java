@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import fr.humanbooster.fx.englishbattle.business.Partie;
@@ -21,10 +20,10 @@ import fr.humanbooster.fx.englishbattle.dao.QuestionDao;
 import fr.humanbooster.fx.englishbattle.dao.Requetes;
 import fr.humanbooster.fx.englishbattle.dao.VerbeDao;
 
-public class QuestionDaoImpl implements QuestionDao {
+public class QuestionDaoImpl implements QuestionDao, AutoCloseable{
 	
 	// ----------------------------- Attributs ----------------------------------
-	private Connection connection;
+	private Connection connexion;
 	private static VerbeDao verbeDao = new VerbeDaoImpl();
 	private static PartieDao partieDao = new PartieDaoImpl();
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -33,7 +32,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	// ----------------------------- Constructeurs ------------------------------
 	public QuestionDaoImpl() {
 		try {
-			connection = ConnexionBdd.getConnection();
+			connexion = ConnexionBdd.getConnection();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -54,7 +53,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	@Override
 	public List<Question> findAll() throws SQLException, ParseException {
         List<Question> questions = new ArrayList<>();
-        PreparedStatement ps = connection.prepareStatement(Requetes.TOUS_LES_QUESTIONS);
+        PreparedStatement ps = connexion.prepareStatement(Requetes.TOUS_LES_QUESTIONS);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             questions.add(findOne(rs.getLong("id")));
@@ -65,7 +64,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	@Override
 	public Question findOne(Long id) throws SQLException, ParseException {
 		Question question = null;
-        PreparedStatement ps = connection.prepareStatement(Requetes.QUESTION_PAR_ID);
+        PreparedStatement ps = connexion.prepareStatement(Requetes.QUESTION_PAR_ID);
         ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
@@ -83,7 +82,7 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	@Override
 	public boolean delete(Long id) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(Requetes.SUPPRESSION_QUESTION);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.SUPPRESSION_QUESTION);
 		ps.setLong(1, id);
 		try {
 			ps.executeUpdate();
@@ -110,7 +109,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 	
 	private PreparedStatement initialiseStatement(String requete, Question question) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement ps = connexion.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
 		Date dateEnvoie = new java.sql.Date(question.getDateEnvoi().getTime());
 		Date dateReponse = new java.sql.Date(question.getDateReponse().getTime());
 		ps.setLong(1, question.getPartie().getId());
@@ -120,6 +119,11 @@ public class QuestionDaoImpl implements QuestionDao {
 		ps.setString(5, simpleDateFormat.format(dateReponse));
 		ps.setString(6, simpleDateFormat.format(dateEnvoie));
 		return ps;
+	}
+
+	@Override
+	public void close() throws Exception {
+		connexion.close();
 	}
 	
 

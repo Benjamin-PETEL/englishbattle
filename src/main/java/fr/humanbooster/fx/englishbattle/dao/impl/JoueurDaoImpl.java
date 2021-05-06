@@ -15,9 +15,9 @@ import fr.humanbooster.fx.englishbattle.dao.NiveauDao;
 import fr.humanbooster.fx.englishbattle.dao.Requetes;
 import fr.humanbooster.fx.englishbattle.dao.VilleDao;
 
-public class JoueurDaoImpl implements JoueurDao{
+public class JoueurDaoImpl implements JoueurDao, AutoCloseable{
 	
-	private Connection connexion ;
+	private Connection connexion;
 	private NiveauDao niveauDao = new NiveauDaoImpl();
 	private VilleDao villeDao = new VilleDaoImpl();
 	
@@ -117,6 +117,11 @@ public class JoueurDaoImpl implements JoueurDao{
 		else {
 			return false;
 		}
+	}
+
+	@Override
+	public void close() throws Exception {
+		connexion.close();
 	}
 
 }

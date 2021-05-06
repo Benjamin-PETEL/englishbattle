@@ -13,13 +13,13 @@ import fr.humanbooster.fx.englishbattle.dao.ConnexionBdd;
 import fr.humanbooster.fx.englishbattle.dao.NiveauDao;
 import fr.humanbooster.fx.englishbattle.dao.Requetes;
 
-public class NiveauDaoImpl implements NiveauDao {
+public class NiveauDaoImpl implements NiveauDao , AutoCloseable{
 
-	private Connection connection;
+	private Connection connexion;
 
 	public NiveauDaoImpl() {
 		try {
-			connection = ConnexionBdd.getConnection();
+			connexion = ConnexionBdd.getConnection();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -28,7 +28,7 @@ public class NiveauDaoImpl implements NiveauDao {
 	
 	@Override
 	public Niveau create(Niveau niveau) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(Requetes.AJOUT_NIVEAU, Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.AJOUT_NIVEAU, Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, niveau.getNom());
 		ps.executeUpdate();
 		ResultSet rs = ps.getGeneratedKeys();
@@ -41,7 +41,7 @@ public class NiveauDaoImpl implements NiveauDao {
 	@Override
 	public List<Niveau> findAll() throws SQLException {
 		List<Niveau> niveaux = new ArrayList<>();
-		PreparedStatement ps = connection.prepareStatement(Requetes.TOUS_LES_NIVEAUX);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.TOUS_LES_NIVEAUX);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			Niveau niveau = new Niveau(rs.getString("nom"));
@@ -54,7 +54,7 @@ public class NiveauDaoImpl implements NiveauDao {
 	@Override
 	public Niveau findOne(Long id) throws SQLException {
 		Niveau niveau = null;
-		PreparedStatement ps = connection.prepareStatement(Requetes.NIVEAU_PAR_ID);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.NIVEAU_PAR_ID);
 		ps.setLong(1, id);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
@@ -62,6 +62,12 @@ public class NiveauDaoImpl implements NiveauDao {
 			niveau.setId(rs.getLong("id"));
 		}
 		return niveau;
+	}
+
+
+	@Override
+	public void close() throws Exception {
+		connexion.close();
 	}
 
 }

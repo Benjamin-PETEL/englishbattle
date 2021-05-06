@@ -15,14 +15,14 @@ import fr.humanbooster.fx.englishbattle.dao.VilleDao;
 
 
 
-public class VilleDaoImpl implements VilleDao {
+public class VilleDaoImpl implements VilleDao, AutoCloseable{
 
 	
-private Connection connection;
+private Connection connexion;
 	
     public VilleDaoImpl() {
         try {
-        	connection = ConnexionBdd.getConnection();
+        	connexion = ConnexionBdd.getConnection();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -30,7 +30,7 @@ private Connection connection;
     
 	@Override
 	public Ville create(Ville ville) throws SQLException {
-		PreparedStatement preparedStatement = connection.prepareStatement(Requetes.AJOUT_VILLE, Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement preparedStatement = connexion.prepareStatement(Requetes.AJOUT_VILLE, Statement.RETURN_GENERATED_KEYS);
 		preparedStatement.setString(1, ville.getNom());
 		preparedStatement.executeUpdate();
 		ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -43,7 +43,7 @@ private Connection connection;
 	@Override
 	public List<Ville> findAll() throws SQLException {
 		List<Ville> villes = new ArrayList<>();
-		PreparedStatement ps = connection.prepareStatement(Requetes.TOUTES_LES_VILLES);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.TOUTES_LES_VILLES);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			Ville ville = new Ville(rs.getString("nom"));
@@ -56,7 +56,7 @@ private Connection connection;
 	@Override
 	public Ville findOne(Long id) throws SQLException {
 		Ville ville = null;
-		PreparedStatement ps = connection.prepareStatement(Requetes.VILLE_PAR_ID);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.VILLE_PAR_ID);
 		ps.setLong(1, id);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
@@ -72,10 +72,15 @@ private Connection connection;
 		if (ville==null) {
 			return false;
 		}
-		PreparedStatement ps = connection.prepareStatement(Requetes.SUPPRESSION_VILLE);
+		PreparedStatement ps = connexion.prepareStatement(Requetes.SUPPRESSION_VILLE);
 		ps.setLong(1, id);
 		ps.executeUpdate();
 		return true;
+	}
+
+	@Override
+	public void close() throws Exception {
+		connexion.close();
 	}
 
 	
